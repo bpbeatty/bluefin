@@ -33,3 +33,6 @@ else
     echo "No packages to install."
 
 fi
+
+# install signing config
+rpm-ostree install /tmp/rpms/*.rpm
