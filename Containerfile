@@ -30,10 +30,8 @@ RUN /tmp/build.sh && \
     systemctl enable dconf-update.service && \
     systemctl enable remote-fs.target && \
     systemctl enable rpm-ostree-countme.service && \
-    systemctl enable tailscaled.service && \
     fc-cache -f /usr/share/fonts/ubuntu && \
     fc-cache -f /usr/share/fonts/inter && \
-    rm -f /etc/yum.repos.d/tailscale.repo && \
     rm -f /usr/share/applications/fish.desktop && \
     rm -f /usr/share/applications/htop.desktop && \
     rm -f /usr/share/applications/nvtop.desktop && \

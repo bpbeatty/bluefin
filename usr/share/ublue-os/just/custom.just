@@ -105,7 +105,6 @@ fish:
 
 gnome-extensions:
   pip install --upgrade gnome-extensions-cli
-  gext install tailscale-status@maxgallup.github.com
   gext install nightthemeswitcher@romainvigier.fr
   gext install pano@elhan.io
   gext install weatheroclock@CleoMenezesJr.github.io
