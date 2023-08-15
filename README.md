@@ -120,7 +120,6 @@ Dedicated developer image with bundled tools. It endevaours to be the world's mo
       - Check out [Devbox](https://www.jetpack.io/devbox) for more information
 - Quality of Life Improvements
     - systemd shutdown timers adjusted to 15 seconds
-    - [Tailscale](https://tailscale.com/) for VPN
     - [Just](https://github.com/casey/just) task runner for post-install automation tasks. Check out [our documentation](https://universal-blue.org/guide/just/) for more information on using and customizing just.
     - `fish` and `zsh` available as optional shells, use `just fish` or `just zsh` and follow the prompts to configure them
 

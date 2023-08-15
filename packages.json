@@ -33,7 +33,6 @@
                 "samba-dcerpc",
                 "samba-winbind-clients",
                 "samba-winbind-modules",
-                "tailscale",
                 "tmux",
                 "vim",
                 "vim-default-editor",
