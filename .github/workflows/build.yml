@@ -22,7 +22,6 @@ jobs:
         image_flavor: [main, nvidia]
         base_name: [bluefin, bluefin-dx]
         major_version: [38]
-        exclude:
         include:
           - major_version: 38
             is_latest_version: true
