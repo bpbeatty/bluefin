@@ -105,11 +105,11 @@ distrobox-universal:
 
 # Add boot parameters needed for a Framework 13 laptop
 framework-13:
-  rpm-ostree kargs --append="module_blacklist=hid_sensor_hub" --append="nvme.noacpi=1" --append="tpm_tis.interrupts=0"
+  rpm-ostree kargs --append="module_blacklist=hid_sensor_hub" --append="nvme.noacpi=1" --append="tpm_tis.interrupts=0" --append="rd.luks.options=discard"
 
 # Switch to the fish shell
 fish:
-  sudo lchsh -s /usr/bin/fish $USER
+  sudo lchsh $USER /usr/bin/fish 
 
 # Install recommended GNOME extensions
 gnome-extensions:
@@ -121,7 +121,7 @@ gnome-extensions:
 # Install JetBrains Toolbox | https://www.jetbrains.com/toolbox-app/
 jetbrains-toolbox:
   #!/usr/bin/env bash
-  BUILD_VERSION="2.0.1.16621"
+  BUILD_VERSION="2.0.2.16660"
   echo "Installing JetBrains Toolbox"
   pushd "$(mktemp -d)"
   curl -sSfL -O https://download.jetbrains.com/toolbox/jetbrains-toolbox-$BUILD_VERSION.tar.gz
@@ -133,7 +133,7 @@ jetbrains-toolbox:
 # Install nix and Devbox
 nix-devbox:
   echo 'Setting phasers to kill. Installing nix.'
-  curl -s https://raw.githubusercontent.com/dnkmmr69420/nix-installer-scripts/main/installer-scripts/silverblue-nix-installer.sh | bash
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
   echo 'Installing devbox!'
   curl -fsSL https://get.jetpack.io/devbox | bash
   echo 'You MUST reboot to continue'
@@ -142,8 +142,8 @@ nix-devbox:
 nix-devbox-global:
   echo 'Installing devbox global profile.'
   devbox global pull https://devbox.getfleek.dev/high
-  echo 'run "devbox global run install-bash-hook" to configure bash shell'
-  echo 'run "devbox global run install-zsh-hook" to configure zsh shell'
+  echo 'run "devbox global run install-hook-bash" to configure bash shell'
+  echo 'run "devbox global run install-hook-zsh" to configure zsh shell'
   echo 'run "devbox global run" to see other available configuration commands'
 
 # Enable podmansh as user shell (EXPERIMENTAL)
@@ -154,6 +154,7 @@ podmansh:
   podman pull ghcr.io/ublue-os/ubuntu-toolbox:latest
   
   systemctl --user daemon-reload
+  systemctl --user stop podmansh.service
   systemctl --user start podmansh.service
   echo "Shell now switched to podmansh. Spawn a new terminal to get going!"
   echo "By default, the shell will be Bash. To override it, create ~/.profile with your preferred shell"
@@ -168,7 +169,7 @@ podmansh-switch IMAGE:
   systemctl --user start podmansh.service
   echo "Image now switched to {{IMAGE}}"
 
-# Install better touch-friendly GNOME extensions
+# Install a better on-screen-keyboard and gesture improvements
 touch:
   pip install --upgrade gnome-extensions-cli
   gext install improvedosk@nick-shmyrev.dev
@@ -185,4 +186,4 @@ yafti:
 
 # Switch to the zsh shell
 zsh:
-  sudo lchsh -s /usr/bin/zsh $USER
+  sudo lchsh $USER /usr/bin/zsh 
