@@ -10,7 +10,6 @@ FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION} AS bluefin
 ARG IMAGE_NAME="${IMAGE_NAME}"
 ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION}"
 
-COPY etc /etc
 COPY usr /usr
 
 COPY --from=ghcr.io/bpbeatty/signing:latest /rpms /tmp/rpms
@@ -52,8 +51,8 @@ ARG IMAGE_NAME="${IMAGE_NAME}"
 ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION}"
 
 # dx specific files come from the dx directory in this repo
-COPY dx/etc /etc
 COPY dx/usr /usr
+COPY dx/etc/yum.repos.d/ /etc/yum.repos.d/
 COPY workarounds.sh /tmp/workarounds.sh
 
 RUN wget https://copr.fedorainfracloud.org/coprs/ganto/lxc4/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ganto-lxc4-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/ganto-lxc4-fedora-"${FEDORA_MAJOR_VERSION}".repo
@@ -113,7 +112,6 @@ RUN ostree container commit
 # Image for Framework laptops
 FROM bluefin AS bluefin-framework
 
-COPY framework/etc /etc
 COPY framework/usr /usr
 
 RUN rpm-ostree install tlp tlp-rdw stress-ng
