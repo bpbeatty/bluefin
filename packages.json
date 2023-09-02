@@ -33,6 +33,7 @@
                 "samba-dcerpc",
                 "samba-winbind-clients",
                 "samba-winbind-modules",
+		            "solaar",
                 "tmux",
                 "vim",
                 "vim-default-editor",
