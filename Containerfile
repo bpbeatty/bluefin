@@ -24,7 +24,7 @@ RUN rm -f /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo
 ## bootc
 RUN wget https://copr.fedorainfracloud.org/coprs/rhcontainerbot/bootc/repo/fedora-"${FEDORA_MAJOR_VERSION}"/bootc-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/bootc.repo
 RUN rpm-ostree install bootc
-RUN rm -f /etc/yum.repos.d/bootc-"${FEDORA_MAJOR_VERSION}".repo
+RUN rm -f /etc/yum.repos.d/bootc.repo
 
 RUN /tmp/build.sh && \
     setsebool -P -N use_nfs_home_dirs=1 unconfined_mozilla_plugin_transition=0 && \

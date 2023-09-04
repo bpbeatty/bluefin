@@ -2,6 +2,7 @@
   "all": {
     "include": {
       "bluefin": [
+				"bash-color-prompt",
         "clevis",
         "clevis-dracut",
         "clevis-udisks2",
