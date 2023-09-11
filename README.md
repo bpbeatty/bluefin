@@ -17,6 +17,7 @@ A familiar(ish) Ubuntu desktop for Fedora Silverblue. It strives to cover these 
 
 # Documentation
 
+<<<<<<< HEAD
 1. Download and install [the ISO from here](https://github.com/ublue-os/main/releases/latest/):
    - Select "Install ublue-os/bluefin" from the menu
      - Choose "Install bluefin:38" if you have an AMD or Intel GPU
@@ -218,3 +219,8 @@ If you prefer a vanilla GNOME installation check out [silverblue-main](https://g
 Should I trust you?
 
 > This is all hosted, built, and pushed on GitHub. As far as if I'm a trustable fellow, here's my [bio](https://www.ypsidanger.com/about/). If you've made it this far then hopefully you've come to the conclusion on how easy it would be to build all of this on your own trusted machinery. :smile:
+1. [Bluefin](https://universal-blue.org/images/bluefin/)
+2. [Discussions and Announcements](https://github.com/orgs/ublue-os/discussions/categories/bluefin) - strongly recommended!
+3. [Developer Experience Edition](https://universal-blue.org/images/bluefin/developer-experience/)
+4. [Administrator's Guide](https://universal-blue.org/images/bluefin/admin/)
+5. [Framework Images](https://universal-blue.org/images/bluefin/framework/)
