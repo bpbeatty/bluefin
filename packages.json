@@ -31,6 +31,7 @@
         "samba-winbind-modules",
         "samba",
         "solaar",
+        "stress-ng",
         "tmux",
         "vim",
         "vim-default-editor",
@@ -87,9 +88,8 @@
         "virt-manager"
       ],
       "bluefin-framework": [
-        "stress-ng",
-        "tlp-rdw",
-        "tlp"
+        "tlp",
+        "tlp-rdw"
       ]
     },
     "exclude": {
