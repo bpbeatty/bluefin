@@ -12,7 +12,6 @@ ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION}"
 ARG PACKAGE_LIST="bluefin"
 
 COPY usr /usr
-COPY --from=ghcr.io/bpbeatty/signing:latest /rpms /tmp/rpms
 COPY packages.json /tmp/packages.json
 COPY build.sh /tmp/build.sh
 
@@ -47,6 +46,10 @@ RUN /tmp/build.sh && \
     ostree container commit && \
     mkdir -p /var/tmp && \
     chmod -R 1777 /var/tmp
+
+## bpbeatty signing files and keys
+COPY --from=ghcr.io/bpbeatty/signing:latest /rpms /tmp/rpms
+RUN rpm-ostree install /tmp/rpms/*.rpm
 
 ## bluefin-dx developer edition image section
 FROM bluefin AS bluefin-dx
