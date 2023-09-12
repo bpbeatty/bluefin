@@ -13,6 +13,7 @@ ARG PACKAGE_LIST="bluefin"
 
 COPY usr /usr
 COPY --from=ghcr.io/bpbeatty/signing:latest /rpms /tmp/rpms
+RUN rpm-ostree install /tmp/rpms/*.rpm
 COPY packages.json /tmp/packages.json
 COPY build.sh /tmp/build.sh
 
