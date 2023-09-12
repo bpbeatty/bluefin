@@ -2,7 +2,7 @@
   "all": {
     "include": {
       "bluefin": [
-				"bash-color-prompt",
+        "bash-color-prompt",
         "clevis",
         "clevis-dracut",
         "clevis-udisks2",
@@ -38,7 +38,7 @@
         "xprop",
         "yaru-theme",
         "zsh",
-				"google-noto-sans-cjk-fonts"
+        "google-noto-sans-cjk-fonts"
       ],
       "bluefin-dx": [
         "adobe-source-code-pro-fonts",
