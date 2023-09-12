@@ -17,7 +17,6 @@ A familiar(ish) Ubuntu desktop for Fedora Silverblue. It strives to cover these 
 
 # Documentation
 
-<<<<<<< HEAD
 1. Download and install [the ISO from here](https://github.com/ublue-os/main/releases/latest/):
    - Select "Install ublue-os/bluefin" from the menu
      - Choose "Install bluefin:38" if you have an AMD or Intel GPU
