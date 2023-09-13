@@ -70,6 +70,7 @@ screens:
           default: false
           description: Tools to communicate and collaborate
           packages:
+          - Element: im.riot.Riot
           - Discord: com.discordapp.Discord
           - Slack: com.slack.Slack
         Gaming:
