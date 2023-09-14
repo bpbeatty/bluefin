@@ -71,6 +71,7 @@ screens:
           description: Tools to communicate and collaborate
           packages:
           - Discord: com.discordapp.Discord
+          - HexChat: io.github.Hexchat
           - Slack: com.slack.Slack
         Gaming:
           description: "Rock and Stone!"
