@@ -193,3 +193,7 @@ yafti:
 # Switch to the zsh shell
 zsh:
   sudo lchsh $USER /usr/bin/zsh 
+
+docker:
+  sudo systemctl enable --now docker
+  sudo usermod -aG docker $USER
