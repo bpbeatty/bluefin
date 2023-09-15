@@ -102,6 +102,7 @@ screens:
           - Google Chrome: com.google.Chrome
           - Microsoft Edge: com.microsoft.Edge
           - Opera: com.opera.Opera
+          - Tor: com.github.micahflee.torbrowser-launcher
         Streaming:
           description: Stream to the Internet
           default: false
