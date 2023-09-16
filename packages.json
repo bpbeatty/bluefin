@@ -38,8 +38,7 @@
         "wireguard-tools",
         "xprop",
         "yaru-theme",
-        "zsh",
-        "google-noto-sans-cjk-fonts"
+        "zsh"
       ],
       "bluefin-dx": [
         "adobe-source-code-pro-fonts",
@@ -101,7 +100,6 @@
       "bluefin": [
         "gnome-software-rpm-ostree",
         "gnome-tour",
-        "google-noto-sans-cjk-vf-fonts",
         "nano-default-editor",
         "ublue-os-signing"
       ],
