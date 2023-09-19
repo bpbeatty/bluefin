@@ -91,6 +91,7 @@ screens:
           packages:
           - Gnome Next Meeting Applet: com.chmouel.gnomeNextMeetingApplet
           - LibreOffice: org.libreoffice.LibreOffice
+          - Marker: com.github.fabiocolacio.marker
           - Obsidian: md.obsidian.Obsidian
           - OnlyOffice: org.onlyoffice.desktopeditors
           - Standard Notes: org.standardnotes.standardnotes
