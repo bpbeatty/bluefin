@@ -89,12 +89,8 @@
         "qemu",
         "ubuntu-nerd-fonts",
         "ubuntumono-nerd-fonts",
-        "virt-manager"
-      ],
-      "bluefin-framework": [
-        "tlp",
-        "tlp-rdw"
-      ]
+        "virt-manager",
+        "wl-clipboard"
     },
     "exclude": {
       "bluefin": [
@@ -103,15 +99,27 @@
         "nano-default-editor",
         "ublue-os-signing"
       ],
-      "bluefin-dx": [],
-      "bluefin-framework": [
-        "power-profiles-daemon"
-      ]
+      "bluefin-dx": []
     }
   },
   "38": {
     "include": {
       "bluefin": [],
+      "bluefin-dx": [],
+      "bluefin-framework": []
+    },
+    "exclude": {
+      "bluefin": [
+        "podman-docker"
+      ],
+      "bluefin-dx": []
+    }
+  },
+  "39": {
+    "include": {
+      "bluefin": [
+        "input-leap"
+      ],
       "bluefin-dx": [],
       "bluefin-framework": []
     },

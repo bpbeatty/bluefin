@@ -15,15 +15,23 @@ COPY usr /usr
 COPY packages.json /tmp/packages.json
 COPY build.sh /tmp/build.sh
 
-# gnome-vrr
-RUN wget https://copr.fedorainfracloud.org/coprs/kylegospo/gnome-vrr/repo/fedora-"${FEDORA_MAJOR_VERSION}"/kylegospo-gnome-vrr-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo
-RUN rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:kylegospo:gnome-vrr mutter mutter-common gnome-control-center gnome-control-center-filesystem xorg-x11-server-Xwayland
-RUN rm -f /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo
+# Exclude gnome-vrr from F39
+RUN if grep -qv "39" <<< "${FEDORA_MAJOR_VERSION}"; then \
+    wget https://copr.fedorainfracloud.org/coprs/kylegospo/gnome-vrr/repo/fedora-"${FEDORA_MAJOR_VERSION}"/kylegospo-gnome-vrr-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo && \
+    rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:kylegospo:gnome-vrr mutter mutter-common gnome-control-center gnome-control-center-filesystem xorg-x11-server-Xwayland && \
+    rm -f /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo \
+    ; fi
 
 ## bootc
 RUN wget https://copr.fedorainfracloud.org/coprs/rhcontainerbot/bootc/repo/fedora-"${FEDORA_MAJOR_VERSION}"/bootc-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/bootc.repo
 RUN rpm-ostree install bootc
 RUN rm -f /etc/yum.repos.d/bootc-"${FEDORA_MAJOR_VERSION}".repo
+
+# Starship Shell Prompt
+RUN curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz" && \
+  tar -xzf /tmp/starship.tar.gz -C /tmp && \
+  install -c -m 0755 /tmp/starship /usr/bin && \
+  echo 'eval "$(starship init bash)"' >> /etc/bashrc
 
 RUN /tmp/build.sh && \
     setsebool -P -N use_nfs_home_dirs=1 unconfined_mozilla_plugin_transition=0 && \
@@ -95,8 +103,6 @@ RUN wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx -O /usr
     wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens -O /usr/bin/kubens && \
     chmod +x /usr/bin/kubectx /usr/bin/kubens
 
-    
-
 RUN systemctl enable podman.socket
 RUN systemctl disable pmie.service
 RUN systemctl disable pmlogger.service
@@ -110,25 +116,6 @@ RUN rm -f /etc/yum.repos.d/vscode.repo
 RUN rm -f /etc/yum.repos.d/docker-ce.repo
 RUN rm -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:phracek:PyCharm.repo
 RUN rm -f /etc/yum.repos.d/fedora-cisco-openh264.repo
-
-RUN rm -rf /tmp/* /var/*
-RUN ostree container commit
-
-# Image for Framework laptops
-FROM bluefin AS bluefin-framework
-
-ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION}"
-ARG PACKAGE_LIST="bluefin-framework"
-
-COPY framework/usr /usr
-COPY packages.json /tmp/packages.json
-COPY build.sh /tmp/build.sh
-
-# Handle packages via packages.json
-RUN /tmp/build.sh
-
-RUN systemctl enable tlp
-RUN systemctl enable fprintd.service
 
 RUN rm -rf /tmp/* /var/*
 RUN ostree container commit
