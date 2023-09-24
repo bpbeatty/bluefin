@@ -8,12 +8,19 @@ ARG TARGET_BASE="${TARGET_BASE:-bluefin}"
 ## bluefin image section
 FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION} AS bluefin
 
+ARG IMAGE_NAME="${IMAGE_NAME}"
+ARG IMAGE_VENDOR="ublue-os"
+ARG BASE_IMAGE_NAME="${BASE_IMAGE_NAME}"
+ARG IMAGE_FLAVOR="${IMAGE_FLAVOR}"
 ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION}"
 ARG PACKAGE_LIST="bluefin"
 
 COPY usr /usr
+COPY just/custom.just /tmp/just/custom.just
+COPY etc/yum.repos.d/ /etc/yum.repos.d/
 COPY packages.json /tmp/packages.json
 COPY build.sh /tmp/build.sh
+COPY image-info.sh /tmp/image-info.sh
 
 # Exclude gnome-vrr from F39
 RUN if grep -qv "39" <<< "${FEDORA_MAJOR_VERSION}"; then \
@@ -35,6 +42,7 @@ RUN curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases
 
 RUN /tmp/build.sh && \
     setsebool -P -N use_nfs_home_dirs=1 unconfined_mozilla_plugin_transition=0 && \
+    /tmp/image-info.sh && \
     pip install --prefix=/usr yafti && \
     systemctl unmask dconf-update.service && \
     systemctl enable dconf-update.service && \
@@ -43,6 +51,7 @@ RUN /tmp/build.sh && \
     systemctl enable dconf-update.service && \
     fc-cache -f /usr/share/fonts/ubuntu && \
     fc-cache -f /usr/share/fonts/inter && \
+    cat /tmp/just/custom.just >> /usr/share/ublue-os/just/60-custom.just && \
     rm -f /usr/share/applications/fish.desktop && \
     rm -f /usr/share/applications/htop.desktop && \
     rm -f /usr/share/applications/nvtop.desktop && \
@@ -61,6 +70,10 @@ RUN rpm-ostree install /tmp/rpms/*.rpm
 ## bluefin-dx developer edition image section
 FROM bluefin AS bluefin-dx
 
+ARG IMAGE_NAME="${IMAGE_NAME}"
+ARG IMAGE_VENDOR="ublue-os"
+ARG BASE_IMAGE_NAME="${BASE_IMAGE_NAME}"
+ARG IMAGE_FLAVOR="${IMAGE_FLAVOR}"
 ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION}"
 ARG PACKAGE_LIST="bluefin-dx"
 
@@ -70,6 +83,7 @@ COPY dx/etc/yum.repos.d/ /etc/yum.repos.d/
 COPY workarounds.sh /tmp/workarounds.sh
 COPY packages.json /tmp/packages.json
 COPY build.sh /tmp/build.sh
+COPY image-info.sh /tmp/image-info.sh
 
 # Apply IP Forwarding before installing Docker to prevent messing with LXC networking
 RUN sysctl -p
@@ -79,6 +93,7 @@ RUN wget https://copr.fedorainfracloud.org/coprs/bobslept/nerd-fonts/repo/fedora
 
 # Handle packages via packages.json
 RUN /tmp/build.sh
+RUN /tmp/image-info.sh
 
 RUN wget https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -O /tmp/docker-compose && \
     install -c -m 0755 /tmp/docker-compose /usr/bin
