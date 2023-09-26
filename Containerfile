@@ -46,7 +46,6 @@ RUN /tmp/build.sh && \
     fc-cache -f /usr/share/fonts/ubuntu && \
     fc-cache -f /usr/share/fonts/inter && \
     find /tmp/just -iname '*.just' -exec printf "\n\n" \; -exec cat {} \; >> /usr/share/ublue-os/just/60-custom.just && \
-    rm -f /etc/yum.repos.d/tailscale.repo && \
     rm -f /usr/share/applications/fish.desktop && \
     rm -f /usr/share/applications/htop.desktop && \
     rm -f /usr/share/applications/nvtop.desktop && \
