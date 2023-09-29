@@ -10,7 +10,7 @@ env:
 
 jobs:
   push-ghcr:
-    name: Build and push image
+    name: Make
     runs-on: ubuntu-22.04
     permissions:
       contents: read
@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image_flavor: [main, nokmods, nvidia]
+        image_flavor: [main, nvidia]
         base_name: [bluefin, bluefin-dx]
         major_version: [38, 39]
         include:
@@ -30,21 +30,12 @@ jobs:
             is_latest_version: true
             is_stable_version: false
     steps:
-      - name: Free Disk Space (Ubuntu)
-        uses: kfir4444/free-disk-space@main
+      - name: Maximize build space
+        uses: AdityaGarg8/remove-unwanted-software@v1
         with:
-          # this might remove tools that are actually needed,
-          # if set to "true" but frees about 6 GB
-          tool-cache: false
-
-          # all of these default to true, but feel free to set to
-          # "false" if necessary for your workflow
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: true
-          docker-images: false
-          swap-storage: true
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
 
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
