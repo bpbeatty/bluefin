@@ -89,6 +89,7 @@ screens:
           description: Bow to Capitalism
           default: false
           packages:
+          - Gimp: org.gimp.GIMP
           - Gnome Next Meeting Applet: com.chmouel.gnomeNextMeetingApplet
           - LibreOffice: org.libreoffice.LibreOffice
           - Marker: com.github.fabiocolacio.marker
