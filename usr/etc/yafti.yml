@@ -119,9 +119,10 @@ screens:
           description: Useful Utilities
           default: true
           packages:
+          - Audacity: org.audacityteam.Audacity
+          - Backup: org.gnome.DejaDup
           - Font Downloader: org.gustavoperedo.FontDownloader
           - PinApp Menu Editor: io.github.fabrialberio.pinapp
-          - Backup: org.gnome.DejaDup
           - Kodi: tv.kodi.Kodi
           - Syncthing: com.github.zocker_160.SyncThingy
   final-screen:
