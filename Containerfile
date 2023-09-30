@@ -38,8 +38,14 @@ RUN curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases
   install -c -m 0755 /tmp/starship /usr/bin && \
   echo 'eval "$(starship init bash)"' >> /etc/bashrc
 
+# hack workaround, setup nfs for amd only
+RUN if grep -q "nvidia" <<< "${IMAGE_FLAVOR}"; then \
+        echo 'nvidia build, skipping selinux mods' \
+    ; else \
+        setsebool -P -N use_nfs_home_dirs=1 unconfined_mozilla_plugin_transition=0 \
+    ; fi
+
 RUN /tmp/build.sh && \
-    setsebool -P -N use_nfs_home_dirs=1 unconfined_mozilla_plugin_transition=0 && \
     /tmp/image-info.sh && \
     pip install --prefix=/usr yafti && \
     systemctl unmask dconf-update.service && \
