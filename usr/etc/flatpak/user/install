@@ -15,6 +15,7 @@ org.gnome.Weather
 org.gnome.baobab
 org.gnome.clocks
 org.gnome.font-viewer
+org.keepassxc.KeePassXC
 com.mattjakeman.ExtensionManager
 com.github.tchx84.Flatseal
 org.fedoraproject.MediaWriter
