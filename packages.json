@@ -11,6 +11,7 @@
         "ddccontrol-gtk",
         "ddccontrol",
         "evolution",
+        "evtest",
         "freeipa-client",
         "fish",
         "gnome-shell-extension-appindicator",

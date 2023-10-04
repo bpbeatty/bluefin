@@ -1,14 +1,14 @@
-title: Welcome to uBlue
+title: Welcome to Bluefin
 properties:
   mode: "run-once"
 screens:
   first-screen:
     source: yafti.screen.title
     values:
-      title: "Welcome to Bluefin (Alpha)"
+      title: "Welcome to Bluefin (Beta)"
       icon: "/path/to/icon"
       description: |
-        Pick some applications to get started
+        Applications are also installing in the background, the system will notify you when it is finished.
   applications:
     source: yafti.screen.package
     values:
@@ -16,11 +16,6 @@ screens:
       show_terminal: true
       package_manager: yafti.plugin.flatpak
       groups:
-        Admin Tools:
-          description: Helper Utilities for Administration
-          default: false
-          packages:
-          - Cockpit Client: org.cockpit_project.CockpitClient
         Communication:
           default: false
           description: Tools to communicate and collaborate
@@ -38,14 +33,12 @@ screens:
           - Lutris: net.lutris.Lutris
           - MangoHUD: org.freedesktop.Platform.VulkanLayer.MangoHud//22.08
           - Steam: com.valvesoftware.Steam
-          - Gamescope for Steam: org.freedesktop.Platform.VulkanLayer.gamescope
-          - Proton Updater (GTK) for Steam: com.vysp3r.ProtonPlus
+          - Proton Plus for Steam: com.vysp3r.ProtonPlus
         Office:
           description: Bow to Capitalism
           default: false
           packages:
           - Gimp: org.gimp.GIMP
-          - Gnome Next Meeting Applet: com.chmouel.gnomeNextMeetingApplet
           - LibreOffice: org.libreoffice.LibreOffice
           - Marker: com.github.fabiocolacio.marker
           - Obsidian: md.obsidian.Obsidian
@@ -76,6 +69,7 @@ screens:
           packages:
           - Audacity: org.audacityteam.Audacity
           - Backup: org.gnome.DejaDup
+          - Cockpit Client: org.cockpit_project.CockpitClient
           - Font Downloader: org.gustavoperedo.FontDownloader
           - PinApp Menu Editor: io.github.fabrialberio.pinapp
           - Kodi: tv.kodi.Kodi
@@ -89,8 +83,8 @@ screens:
       links:
         - "Install More Applications": 
             run: /usr/bin/gnome-software
-        - "Website":
-            run: /usr/bin/xdg-open https://ublue.it
+        - "Documentation":
+            run: /usr/bin/xdg-open https://universal-blue.org/images/bluefin/
         - "Discussions and Announcements":
             run: /usr/bin/xdg-open https://github.com/orgs/ublue-os/discussions/categories/bluefin
         - "Join the Discord Community":
