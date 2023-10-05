@@ -69,6 +69,9 @@ home=['<Super>e']
 [org/gnome/settings-daemon/plugins/power]
 power-button-action='interactive'
 
+[org/gtk/settings/file-chooser]
+sort-directories-first=true
+
 [org/gtk/gtk4/settings/file-chooser]
 sort-directories-first=true
 
@@ -84,3 +87,8 @@ style-preference=2
 font="Ubuntu Mono 16"
 window-width=975
 window-height=650
+
+[org/gnome/software]
+allow-updates=false
+download-updates=false
+download-updates-notify=false
