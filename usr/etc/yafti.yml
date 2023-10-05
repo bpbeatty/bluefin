@@ -72,6 +72,7 @@ screens:
           - Cockpit Client: org.cockpit_project.CockpitClient
           - FlashPrint: com.flashforge.FlashPrint
           - Font Downloader: org.gustavoperedo.FontDownloader
+          - FreeCAD: org.freecadweb.FreeCAD
           - PinApp Menu Editor: io.github.fabrialberio.pinapp
           - Kodi: tv.kodi.Kodi
           - Syncthing: com.github.zocker_160.SyncThingy
