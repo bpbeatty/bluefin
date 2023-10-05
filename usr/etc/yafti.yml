@@ -70,6 +70,7 @@ screens:
           - Audacity: org.audacityteam.Audacity
           - Backup: org.gnome.DejaDup
           - Cockpit Client: org.cockpit_project.CockpitClient
+          - FlashPrint: com.flashforge.FlashPrint
           - Font Downloader: org.gustavoperedo.FontDownloader
           - PinApp Menu Editor: io.github.fabrialberio.pinapp
           - Kodi: tv.kodi.Kodi
