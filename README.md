@@ -11,9 +11,9 @@ A familiar(ish) Ubuntu desktop for Fedora Silverblue. It strives to cover these 
 - For developers we endeavour to provide the best cloud-native developer experience by enabling easy consumption of the [industry's leading tools](https://landscape.cncf.io/card-mode?sort=stars). These are included in dedicated `bluefin-dx` and `bluefin-dx-nvidia` images
 - For gamers we strive to deliver a world-class Flathub gaming experience
 
-![image](https://user-images.githubusercontent.com/1264109/224488462-ac4ed2ad-402d-4116-bd08-15f61acce5cf.png)
+![image](https://github.com/ublue-os/bluefin/assets/1264109/c0b3fa8a-f513-4bb1-b314-e134d1802e18)
 
-> "Let's see what's out there." - Jean-Luc Picard
+> "Evolution is a process of constant branching and expansion." - Stephen Jay Gould
 
 # Documentation
 
