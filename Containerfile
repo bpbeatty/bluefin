@@ -46,13 +46,13 @@ RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo
             /tmp/akmods-rpms/kmods/*openrazer*.rpm \
             /tmp/akmods-rpms/kmods/*v4l2loopback*.rpm \
             /tmp/akmods-rpms/kmods/*wl*.rpm \
-    ; else \
+    ; fi && \
+    # Don't install evdi on asus because of conflicts
+    if grep -qv "asus" <<< "${AKMODS_FLAVOR}"; then \
         rpm-ostree install \
             /tmp/akmods-rpms/kmods/*evdi*.rpm \
     ; fi && \
-    sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/negativo17-fedora-multimedia.repo && \
-    mkdir -p /etc/akmods-rpms/ && \
-    mv /tmp/akmods-rpms/kmods/*steamdeck*.rpm /etc/akmods-rpms/steamdeck.rpm
+    sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/negativo17-fedora-multimedia.repo
 
 # Starship Shell Prompt
 RUN curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz" && \
@@ -147,8 +147,8 @@ RUN curl -Lo ./kind "https://github.com/kubernetes-sigs/kind/releases/latest/dow
     mv ./kind /usr/bin/kind
 
 # Install DevPod
-RUN rpm-ostree install $(curl https://api.github.com/repos/loft-sh/devpod/releases/latest | jq -r '.assets[] | select(.name| test(".*x86_64.rpm$")).browser_download_url') && \
-    wget https://github.com/loft-sh/devpod/releases/latest/download/devpod-linux-amd64 -O /tmp/devpod && \
+RUN rpm-ostree install https://github.com/loft-sh/devpod/releases/download/v0.3.7/DevPod_linux_x86_64.rpm && \
+    wget https://github.com/loft-sh/devpod/releases/download/v0.3.7/devpod-linux-amd64 -O /tmp/devpod && \
     install -c -m 0755 /tmp/devpod /usr/bin
 
 # Install kns/kctx and add completions for Bash
