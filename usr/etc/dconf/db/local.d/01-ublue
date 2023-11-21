@@ -13,11 +13,16 @@ secondary-color='FFFFFF'
 enable-hot-corners=true
 clock-show-weekday=true
 cursor-theme="Yaru"
+icon-theme="Yaru-blue"
 gtk-theme="Yaru-blue"
 font-antialiasing="rgba"
 font-name="Ubuntu 12"
 document-font-name="Ubuntu 12"
 monospace-font-name="Ubuntu Mono 18"
+
+[org/gnome/desktop/sound]
+allow-volume-above-100-percent=true
+theme-name="freedesktop"
 
 [org/gnome/desktop/wm/preferences]
 num-workspaces='4'
