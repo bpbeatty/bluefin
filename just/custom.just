@@ -23,6 +23,16 @@ aqua:
     printf '\n    export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"\n'
     printf '\n=> see https://aquaproj.github.io/docs/tutorial for more info\n'
 
+[private]
+bluefin-cli:
+    #!/usr/bin/env bash
+    if [ ! -f "${HOME}/.brew_pkgs" ]; then
+       echo dysk > "${HOME}/.brew_pkgs"
+    fi;
+    distrobox-create --nvidia --image ghcr.io/ublue-os/bluefin-cli:latest -n bluefin -Y -a "--env BREW_PKGS=.brew_pkgs"
+    echo "Entering bluefin-cli"
+    distrobox enter bluefin
+
 # Enable Cockpit for web-based system management | https://cockpit-project.org/
 cockpit:
     echo 'Enabling Cockpit'
@@ -34,25 +44,8 @@ cockpit:
     sudo systemctl enable cockpit.service
     echo 'Open Cockpit -> http://localhost:9090'
 
-# Import a devcontainers profile for VSCode
-code-profile:
-    xdg-open https://vscode.dev/profile/github/c761b7738e9a7b02286d6d94cb2d1ecd
-
-# Rebase to a stock Bluefin image
-devmode-off:
-    #!/usr/bin/env bash
-    CURRENT_IMAGE=$(rpm-ostree status -b --json | jq -r '.deployments[0]."container-image-reference"')
-    if grep -q "bluefin-dx" <<< $CURRENT_IMAGE
-    then
-        echo "Rebasing to a non developer image"
-        NEW_IMAGE=$(echo $CURRENT_IMAGE | sed "s/bluefin-dx/bluefin/")
-        rpm-ostree rebase $NEW_IMAGE
-    else
-        echo "You are currently not on a developer image"
-    fi
-
-# Rebase to the Bluefin Developer Experience image
-devmode-on:
+# Toggle between Bluefin and the Developer Experience
+devmode:
     #!/usr/bin/env bash
     CURRENT_IMAGE=$(rpm-ostree status -b --json | jq -r '.deployments[0]."container-image-reference"')
 
@@ -67,11 +60,34 @@ devmode-on:
 
     if grep -q "bluefin-dx" <<< $CURRENT_IMAGE
     then
-        echo "You are already on a developer image"
+        CURRENT_STATE="enabled"
     else
-        echo "Rebasing to a developer image"
-        NEW_IMAGE=$(echo $CURRENT_IMAGE | sed "s/bluefin/bluefin-dx/")
-        rpm-ostree rebase $NEW_IMAGE
+        CURRENT_STATE="disabled"
+    fi
+
+    echo "Developer mode is currently ${CURRENT_STATE}"
+    echo "Enable or Disable developer mode"
+    OPTION=$(gum choose Enable Disable)
+    if [ "$OPTION" = "Enable" ]
+    then
+        if [ "$CURRENT_STATE" = "enabled" ]
+        then
+            echo "You are already on a developer image"
+        else
+            echo "Rebasing to a developer image"
+            NEW_IMAGE=$(echo $CURRENT_IMAGE | sed "s/bluefin/bluefin-dx/")
+            rpm-ostree rebase $NEW_IMAGE
+        fi
+    elif [ "$OPTION" = "Disable" ]
+    then
+        if [ "$CURRENT_STATE" = "enabled" ]
+        then
+            echo "Rebasing to a non developer image"
+            NEW_IMAGE=$(echo $CURRENT_IMAGE | sed "s/bluefin-dx/bluefin/")
+            rpm-ostree rebase $NEW_IMAGE
+        else
+            echo "You are currently not on a developer image"
+        fi
     fi
 
 # Assemble a Pytorch distrobox (Nvidia only)
@@ -141,6 +157,30 @@ jetbrains-toolbox:
     tar zxf jetbrains-toolbox-"${BUILD_VERSION}".tar.gz
     echo "Launching JetBrains Toolbox"
     ./jetbrains-toolbox-"${BUILD_VERSION}"/jetbrains-toolbox
+
+# Install garden.io, the Cloud Native DevOps automation platform | https://garden.io
+garden:
+    #!/usr/bin/env bash
+    if ! command -v garden &> /dev/null; then
+        ASSET_URL=$(curl -s https://api.github.com/repos/garden-io/garden/releases/latest | \
+            jq -r '.assets[] | select(.browser_download_url | test("linux-amd64.tar.gz$")) | .browser_download_url')
+        GARDEN_DIR="${HOME}/.garden/bin"
+        TMP_DIR=$(mktemp -d)
+        curl -sSL "$ASSET_URL" | tar -xz -C "$TMP_DIR"
+        mkdir -p "$GARDEN_DIR"
+        mv "$TMP_DIR"/linux-amd64/garden "$GARDEN_DIR"
+        rm -rf "$TMP_DIR"
+
+        echo ""
+        echo "🌺🌻  Garden has been successfully installed 🌷💐"
+        echo ""
+        echo "Add the Garden CLI to your path by adding the following to your .bashrc/.zshrc:"
+        echo ""
+        echo "  export PATH=\$PATH:\$HOME/.garden/bin"
+        echo ""
+        echo "Head over to our documentation for next steps: https://docs.garden.io"
+        echo ""
+    fi
 
 # Install nix and Devbox
 nix-devbox:
