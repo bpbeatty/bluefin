@@ -2,6 +2,20 @@
 favorite-apps = ['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.keepassxc.KeePassXC.desktop', 'code.desktop']
 enabled-extensions = ['appindicatorsupport@rgcjonas.gmail.com', 'blur-my-shell@aunetx', 'gsconnect@andyholmes.github.io']
 
+[org/gnome/desktop/app-folders]
+folder-children=['Utilities', 'Distrobox', 'Wine', 'YaST', 'Pardus']
+
+[org/gnome/desktop/app-folders/folders/Distrobox]
+categories=['Distrobox']
+name='Distrobox'
+translate=false
+
+[org/gnome/desktop/app-folders/folders/Wine]
+apps=['winetricks.desktop']
+categories=['X-Wine', 'wine-wine']
+name='Wine'
+translate=false
+
 [org/gnome/desktop/background]
 picture-uri='file:///usr/share/backgrounds/bluefin/bluefin-winter-dynamic.xml'
 picture-uri-dark='file:///usr/share/backgrounds/bluefin/bluefin-winter-dynamic.xml'
@@ -36,15 +50,17 @@ switch-windows-backward = ['<Shift><Alt>Tab']
 [org/gnome/desktop/peripherals/touchpad]
 tap-to-click=true
 
+[org/gnome/desktop/peripherals/keyboard]
+numlock-state=true
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
 binding='<Control><Alt>t'
-command='gnome-terminal'
-name='gnome-terminal'
+command='xdg-terminal-exec'
+name='Prompt'
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1]
 binding='<Control><Alt>u'
-command='flatpak run com.raggesilver.BlackBox --command "distrobox enter ubuntu"'
-name='blackbox ubuntu'
+command='xdg-terminal-exec -- distrobox enter ubuntu'
+name='Ubuntu Prompt'
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2]
 binding='<Control><Shift>Escape'
@@ -81,3 +97,19 @@ window-height=650
 allow-updates=false
 download-updates=false
 download-updates-notify=false
+
+[com/github/stunkymonkey/nautilus-open-any-terminal]
+terminal='prompt'
+keybindings=''
+new-tab=false
+flatpak='off'
+
+[org/gnome/shell/extensions/Logo-menu]
+menu-button-icon-image=1
+menu-button-terminal='xdg-terminal-exec'
+menu-button-system-monitor='flatpak run io.missioncenter.MissionCenter'
+menu-button-extensions-app='com.mattjakeman.ExtensionManager.desktop'
+
+[org/gnome/Prompt]
+restore-session=false
+restore-window-size=false
