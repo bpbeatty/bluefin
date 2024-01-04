@@ -81,6 +81,7 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/bling/repo/fedora-$(rp
     /tmp/build.sh && \
     /tmp/image-info.sh && \
     pip install --prefix=/usr yafti && \
+    pip install --prefix=/usr topgrade && \
     mkdir -p /usr/etc/flatpak/remotes.d && \
     wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d && \
     cp /tmp/ublue-update.toml /usr/etc/ublue-update/ublue-update.toml && \
@@ -167,8 +168,11 @@ RUN wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx -O /usr
     chmod +x /usr/bin/kubectx /usr/bin/kubens
 
 # Set up services
-RUN systemctl enable docker.service && \
+RUN systemctl enable docker.socket && \
     systemctl enable podman.socket && \
+    systemctl enable swtpm-workaround.service && \
+    systemctl enable bluefin-dx-groups.service && \
+    systemctl enable --global bluefin-dx-user-vscode.service && \
     systemctl disable pmie.service && \
     systemctl disable pmlogger.service
 
