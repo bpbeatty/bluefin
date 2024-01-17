@@ -10,6 +10,7 @@
         "evtest",
         "freeipa-client",
         "fish",
+        "firewall-config",
         "glow",
         "gum",
         "gnome-shell-extension-appindicator",
