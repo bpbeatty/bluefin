@@ -5,11 +5,6 @@ benchmark:
     echo 'Running a 1 minute benchmark ...'
     stress-ng --matrix 0 -t 1m --times
 
-# Assemble distrobox containers
-assemble:
-    echo 'Assembling and replacing distroboxes ...'
-    distrobox assemble create --replace --file /etc/distrobox/distrobox.ini
-
 # Install aqua | https://aquaproj.github.io
 aqua:
     #!/usr/bin/env bash
@@ -23,13 +18,9 @@ aqua:
     printf '\n    export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"\n'
     printf '\n=> see https://aquaproj.github.io/docs/tutorial for more info\n'
 
-[private]
 bluefin-cli:
     #!/usr/bin/env bash 
-    if [ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}/bluefin-cli/Cellar" ]; then 
-       mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/bluefin-cli/Cellar" 
-    fi; 
-    distrobox-create --nvidia --image ghcr.io/ublue-os/bluefin-cli:latest -n bluefin --volume "${XDG_DATA_HOME:-$HOME/.local/share}/bluefin-cli/Cellar":/home/linuxbrew/.linuxbrew/Cellar:z
+    distrobox-create --nvidia --image ghcr.io/ublue-os/bluefin-cli:latest -n bluefin
     echo "Entering bluefin-cli" 
     distrobox enter -n bluefin
 
@@ -92,18 +83,24 @@ devmode:
 
 # Assemble a Pytorch distrobox (Nvidia only)
 distrobox-mlbox:
+    #!/usr/bin/bash
+    source /usr/lib/ujust/ujust.sh
     echo 'Assembling pytorch-nvidia mlbox distrobox ...'
-    distrobox assemble create --file /usr/share/ublue-os/distrobox/pytorch-nvidia.ini
+    AssembleList create "/usr/share/ublue-os/distrobox/pytorch-nvidia.ini" "mlbox"
 
 # Create a Wolfi OS container | https://github.com/wolfi-dev
 distrobox-wolfi:
+    #!/usr/bin/bash
+    source /usr/lib/ujust/ujust.sh
     echo 'Creating WolfiOS distrobox ...'
-    distrobox create --image ghcr.io/ublue-os/wolfi-toolbox:latest -n wolfi
+    Distrobox "ghcr.io/ublue-os/wolfi-toolbox:latest" "wolfi"
 
 # Create a universal developer container
 distrobox-universal:
+    #!/usr/bin/bash
+    source /usr/lib/ujust/ujust.sh
     echo 'Creating Universal Development distrobox ...'
-    distrobox create --image mcr.microsoft.com/devcontainers/universal:latest -n universal -Y
+    Distrobox "mcr.microsoft.com/devcontainers/universal:latest" "universal"
 
 # Switch to the fish shell
 fish:
