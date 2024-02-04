@@ -2,7 +2,7 @@ ARG BASE_IMAGE_NAME="${BASE_IMAGE_NAME:-silverblue}"
 ARG IMAGE_FLAVOR="${IMAGE_FLAVOR:-main}"
 ARG AKMODS_FLAVOR="${AKMODS_FLAVOR:-main}"
 ARG SOURCE_IMAGE="${SOURCE_IMAGE:-$BASE_IMAGE_NAME-$IMAGE_FLAVOR}"
-ARG BASE_IMAGE="ghcr.io/ublue-os/${SOURCE_IMAGE}"
+ARG BASE_IMAGE="ghcr.io/bpbeatty/${SOURCE_IMAGE}"
 ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION:-39}"
 ARG TARGET_BASE="${TARGET_BASE:-bluefin}"
 
@@ -120,10 +120,6 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"$
     ostree container commit && \
     mkdir -p /var/tmp && \
     chmod -R 1777 /var/tmp
-
-## bpbeatty signing files and keys
-COPY --from=ghcr.io/bpbeatty/signing:latest /rpms /tmp/rpms
-RUN rpm-ostree install /tmp/rpms/*.rpm
 
 ## bluefin-dx developer edition image section
 FROM bluefin AS bluefin-dx
