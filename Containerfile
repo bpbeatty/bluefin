@@ -96,6 +96,7 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"$
     if [[ "${FEDORA_MAJOR_VERSION}" -ge "39" ]]; then \
         systemctl enable tuned.service \
     ; fi && \
+    systemctl enable remote-fs.target && \
     systemctl enable rpm-ostree-countme.service && \
     systemctl enable dconf-update.service && \
     systemctl enable ublue-update.timer && \
