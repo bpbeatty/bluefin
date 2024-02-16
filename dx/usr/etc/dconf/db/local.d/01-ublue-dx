@@ -1,11 +1,2 @@
 [org/gnome/shell]
 favorite-apps = ['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.keepassxc.KeePassXC.desktop', 'code.desktop', 'org.gnome.Prompt.desktop']
-
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3]
-binding='<Control><Alt>f'
-command='xdg-terminal-exec -- bluefinbox-enter fedora'
-name='Fedora Prompt'
-
-[org/gnome/settings-daemon/plugins/media-keys]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']
-home=['<Super>e']

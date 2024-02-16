@@ -27,7 +27,8 @@ RUN if [ ${FEDORA_MAJOR_VERSION} -ge "39" ]; then \
         --experimental \
         --from repo=copr:copr.fedorainfracloud.org:kylegospo:prompt \
             vte291 \
-            vte-profile && \
+            vte-profile \
+            libadwaita && \
         rpm-ostree install \
             prompt && \
         rm -f /etc/yum.repos.d/_copr_kylegospo-prompt.repo && \
@@ -74,6 +75,10 @@ RUN curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases
   tar -xzf /tmp/starship.tar.gz -C /tmp && \
   install -c -m 0755 /tmp/starship /usr/bin && \
   echo 'eval "$(starship init bash)"' >> /etc/bashrc
+
+# Copy atuin from bluefin-cli
+COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/atuin /usr/bin/atuin
+COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/share/bash-prexec /usr/share/bash-prexec
 
 # hack workaround, setup nfs for amd only
 RUN if grep -q "nvidia" <<< "${IMAGE_FLAVOR}"; then \

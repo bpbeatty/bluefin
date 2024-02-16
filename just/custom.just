@@ -184,6 +184,23 @@ nix-devbox-global:
     echo 'run "devbox global run install-hook-zsh" to configure zsh shell'
     echo 'run "devbox global run" to see other available configuration commands'
 
+# Prompt terminal transparency
+prompt-transparency opacity="0.95":
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    if [[ -n "$(echo "{{ opacity }}" | grep -v '^[.0-9]*$')" ]]; then
+      printf "Value must be numeric: %s.\n" "{{ opacity }}"
+    elif [[ $(echo "0<{{ opacity }} && 1>{{ opacity }}" | bc -q) -eq 1 ]]; then
+      raw="$(gsettings get org.gnome.Prompt profile-uuids)"
+      uuids="$(sed -En 's|[^0-9a-z]*||g; s|([0-9a-z]{32})|\1\n|gp' <<<${raw})"
+      for i in ${uuids}; do
+        location="org.gnome.Prompt.Profile:/org/gnome/Prompt/Profiles/${i}/"
+        gsettings set "${location}" opacity "{{ opacity }}"; done
+      printf "Prompt opacity is now %s.\n" "{{ opacity }}"
+    else
+      printf "Value must be between 0 and 1: %s.\n" "{{ opacity }}"
+    fi
+
 # Run pytorch
 pytorch:
     echo 'Follow the prompts and check the tutorial: https://docs.anaconda.com/free/anaconda/jupyter-notebooks/'
@@ -226,3 +243,18 @@ dx-group:
     sudo usermod -aG lxd $USER
     sudo usermod -aG libvirt $USER
     @echo "Logout to use docker, incus-admin, lxd, libvirt"
+
+# Add atuin
+atuin:
+    #!/usr/bin/bash 
+    shell=$(basename $SHELL) 
+    if test $shell = "fish"; then 
+        echo "Adding atuin to your config.fish"
+        printf '\nif status is-interactive\n\tif type -q atuin\n\t\tatuin init fish | source\n\tend\nend\n' >> ${XDG_CONFIG_HOME:-$HOME/.config}/fish/config.fish
+    elif test $shell = "zsh"; then 
+        echo "Adding atuin to your .zshrc"
+        printf '\n[[ "$(command -v atuin)" ]] && eval "$(atuin init zsh)"\n' >> ${ZDOTDIR:-$HOME}/.zshrc 
+    elif test $shell = "bash"; then 
+        echo "Adding bash-prexec and atuin to your .bashrc" 
+        printf '\n[[ -f /usr/share/bash-prexec ]] && source /usr/share/bash-prexec\n[[ "$(command -v atuin)" ]] && eval "$(atuin init bash)"\n' >> ~/.bashrc
+    fi
