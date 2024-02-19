@@ -1,2 +1,2 @@
 [org/gnome/shell]
-favorite-apps = ['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.keepassxc.KeePassXC.desktop', 'code.desktop', 'org.gnome.Prompt.desktop']
+favorite-apps = ['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.keepassxc.KeePassXC.desktop', 'code.desktop', 'org.gnome.Ptyxis.desktop']
