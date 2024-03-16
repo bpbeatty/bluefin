@@ -91,9 +91,14 @@ RUN curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases
   install -c -m 0755 /tmp/starship /usr/bin && \
   echo 'eval "$(starship init bash)"' >> /etc/bashrc
 
-# Copy atuin from bluefin-cli
+# Copy Bluefin CLI packages
 COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/atuin /usr/bin/atuin
 COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/share/bash-prexec /usr/share/bash-prexec
+COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/eza /usr/bin/eza
+COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/fd /usr/bin/fd
+COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/fzf /usr/bin/fzf
+COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/rg /usr/bin/rg
+COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/zoxide /usr/bin/zoxide
 
 # hack workaround, setup nfs for amd only
 RUN if grep -q "nvidia" <<< "${IMAGE_FLAVOR}"; then \
