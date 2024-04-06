@@ -70,7 +70,6 @@
         "containerd.io",
         "dbus-x11",
         "devpod",
-        "distrobuilder",
         "docker-ce",
         "docker-ce-cli",
         "docker-buildx-plugin",
@@ -94,7 +93,6 @@
         "p7zip-plugins",
         "p7zip",
         "podman-compose",
-        "podman-plugins",
         "podman-tui",
         "podmansh",
         "powerline-fonts",
@@ -131,7 +129,10 @@
   "38": {
     "include": {
       "bluefin": [],
-      "bluefin-dx": [],
+      "bluefin-dx": [
+        "distrobuilder",
+        "podman-plugins"
+      ],
       "bluefin-framework": []
     },
     "exclude": {
@@ -151,16 +152,48 @@
         "tuned-utils",
         "tuned-profiles-atomic"
       ],
+      "bluefin-dx": [
+        "distrobuilder",
+        "podman-plugins"
+      ],
+      "bluefin-framework": []
+    },
+    "exclude": {
+      "bluefin": [
+        "podman-docker",
+        "gnome-terminal-nautilus",
+        "power-profiles-daemon",
+        "tlp",
+        "tlp-rdw"
+      ],
+      "bluefin-dx": [],
+      "bluefin-framework": []
+    }
+  },
+  "40": {
+    "include": {
+      "bluefin": [
+        "input-leap",
+        "nautilus-open-any-terminal",
+        "tuned",
+        "tuned-ppd",
+        "tuned-utils",
+        "tuned-profiles-atomic"
+      ],
       "bluefin-dx": [],
       "bluefin-framework": []
     },
     "exclude": {
       "bluefin": [
         "podman-docker",
-        "gnome-terminal-nautilus"
+        "gnome-terminal-nautilus",
+        "power-profiles-daemon",
+        "tlp",
+        "tlp-rdw"
       ],
       "bluefin-dx": [],
       "bluefin-framework": []
     }
   }
+
 }

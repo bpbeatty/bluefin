@@ -24,12 +24,13 @@ screens:
           - Discord: com.discordapp.Discord
           - HexChat: io.github.Hexchat
           - Slack: com.slack.Slack
-        Development Tools:
+        Cloud Native Development Tools:
           description: Start your cloud-native journey here!
           default: false
           packages:
-          - GNOME Boxes: org.gnome.Boxes
           - Podman Desktop: io.podman_desktop.PodmanDesktop
+          - Headlamp: io.kinvolk.Headlamp
+          - Cockpit Client: org.cockpit_project.CockpitClient
         Gaming:
           description: "Rock and Stone!"
           default: false
@@ -41,16 +42,18 @@ screens:
           - Steam: com.valvesoftware.Steam
           - Proton Plus for Steam: com.vysp3r.ProtonPlus
         Office:
-          description: Bow to Capitalism
+          description: Work apps, Bow to Capitalism
           default: false
           packages:
           - Gimp: org.gimp.GIMP
           - LibreOffice: org.libreoffice.LibreOffice
+          - LogSeq: com.logseq.Logseq
           - Marker: com.github.fabiocolacio.marker
           - Obsidian: md.obsidian.Obsidian
           - OnlyOffice: org.onlyoffice.desktopeditors
           - Standard Notes: org.standardnotes.standardnotes
           - Thunderbird Email: org.mozilla.Thunderbird
+          - Todoist: com.todoist.Todoist
         Other Web Browsers:
           description: Additional browsers to complement Firefox
           default: false
@@ -60,6 +63,7 @@ screens:
           - Microsoft Edge: com.microsoft.Edge
           - Opera: com.opera.Opera
           - Tor: com.github.micahflee.torbrowser-launcher
+          - Vivaldi: com.vivaldi.Vivaldi
         Streaming:
           description: Stream to the Internet
           default: false
@@ -75,11 +79,11 @@ screens:
           packages:
           - Audacity: org.audacityteam.Audacity
           - Backup: org.gnome.DejaDup
-          - Cockpit Client: org.cockpit_project.CockpitClient
           - FlashPrint: com.flashforge.FlashPrint
           - Font Downloader: org.gustavoperedo.FontDownloader
           - FreeCAD: org.freecadweb.FreeCAD
           - LocalSend: org.localsend.localsend_app
+          - Peek (Simple Screen Recorder): com.uploadedlobster.peek
           - PinApp Menu Editor: io.github.fabrialberio.pinapp
           - Kodi: tv.kodi.Kodi
           - Syncthing: com.github.zocker_160.SyncThingy
