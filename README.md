@@ -1,18 +1,13 @@
 # bluefin
 **This image is considered Beta**
 
-[![Bluefin Build](https://github.com/bpbeatty/bluefin/actions/workflows/build.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build.yml)
-
-[![Ubuntu Toolbox Build](https://github.com/bpbeatty/bluefin/actions/workflows/build-ubuntu-toolbox.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-ubuntu-toolbox.yml)
-
-A familiar(ish) Ubuntu desktop for Fedora Silverblue. It strives to cover these three use cases:
-- For end users it provides a system as reliable as a Chromebook with near-zero maintainance, with the power of Ubuntu and Fedora fused together
-- For developers we endeavour to provide the best cloud-native developer experience by enabling easy consumption of the [industry's leading tools](https://landscape.cncf.io/card-mode?sort=stars). These are included in dedicated `bluefin-dx` and `bluefin-dx-nvidia` images
-- For gamers we strive to deliver a world-class Flathub gaming experience
+[![bluefin 38](https://github.com/bpbeatty/bluefin/actions/workflows/build-38-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-38-bluefin.yml) [![bluefin 39](https://github.com/bpbeatty/bluefin/actions/workflows/build-39-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-39-bluefin.yml) [![bluefin 40](https://github.com/bpbeatty/bluefin/actions/workflows/build-40-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-40-bluefin.yml)
 
 ![image](https://github.com/ublue-os/bluefin/assets/1264109/c0b3fa8a-f513-4bb1-b314-e134d1802e18)
 
 > "Evolution is a process of constant branching and expansion." - Stephen Jay Gould
+
+A familiar(ish) Ubuntu desktop for Fedora Silverblue. It strives to cover these two use cases. For end users it provides a system as reliable as a Chromebook with near-zero maintainance, with the power of Ubuntu and Fedora fused together. For gamers we strive to deliver a world-class Flathub gaming experience. Check [Introduction to Bluefin](https://universal-blue.discourse.group/t/introduction-to-bluefin/41) for a feature walkthrough. 
 
 # Documentation
 
@@ -122,59 +117,6 @@ Dedicated developer image with bundled tools. It endevaours to be the world's mo
     - [Just](https://github.com/casey/just) task runner for post-install automation tasks. Check out [our documentation](https://universal-blue.org/guide/just/) for more information on using and customizing just.
     - `fish` and `zsh` available as optional shells, use `just fish` or `just zsh` and follow the prompts to configure them
 
-## Framework Images
-
-Bluefin is available as an image for the Framework 13 laptop that comes preconfigured with tlp and the [recommended power settings](https://github.com/ublue-os/bluefin/blob/main/framework/etc/tlp.d/50-framework.conf) from the [Framework Knowledge Base](https://knowledgebase.frame.work/en_us/optimizing-fedora-battery-life-r1baXZh)
-
-Note that the default image works fine on the Framework 13, this image provides tweaks and further improvements. Additionally if you have power profiles that you think would be useful for the community please send a pull request!
-
-1. Rebase to the -framework image:
-
-    Bluefin:
-
-        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin-framework:38
-
-    Bluefin Developer Experience:
-
-        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin-dx-framework:38
-
-1. Reboot!
-1. Then run this command to set the right kernel arguments for the brightness keys to work:
-
-       just framework-13
-
-Then reboot one more time and you're done!
-
-### Roadmap and Future Features
-
-- Fedora 38 will be the initial release and will be considered Beta
-- Fedora 39 is the target for an initial GA release
-
-These are currently unimplemented ideas that we plan on adding:
-
-- Provide a `:gts` tag aliased to the Fedora -1 release for an approximation of Ubuntu's release cadence
-- Provide a `:lts` tag derived from CentOS Stream for a more enterprise-like cadence
-- [Firecracker](https://github.com/firecracker-microvm/firecracker) - help wanted with this!
-
-### Applications
-
-- Mozilla Firefox, Mozilla Thunderbird, Extension Manager, Libreoffice, DejaDup, FontDownloader, Flatseal, and the Celluloid Media Player
-- Core GNOME Applications installed from Flathub
-  - GNOME Calculator, Calendar, Characters, Connections, Contacts, Evince, Firmware, Logs, Maps, NautilusPreviewer, TextEditor, Weather, baobab, clocks, eog, and font-viewer
-- All applications installed per user instead of system wide, similar to openSUSE MicroOS. Thanks for the inspiration Team Green!
-
-### Recommended Extensions
-
-The authors recommend the following extensions if you'd like to round out your experience. Use the included "Extensions Manager" application to search for these extensions, everything you need to get them to run is already included:
-
-<img src="https://user-images.githubusercontent.com/1264109/224862317-569d018f-a7be-4895-82ff-e2c67652a0ab.png" width="400">
-
-(Note: Installing extensions via extensions.gnome.org won't work, the extensions must be installed via this application)
-
-- [Tailscale Status](https://extensions.gnome.org/extension/5112/tailscale-status/) for VPN
-- [Pano](https://extensions.gnome.org/extension/5278/pano/) for clipboard management
-- [Desktop Cube](https://extensions.gnome.org/extension/4648/desktop-cube/) if you really want to go retro
-
 ## Verification
 
 These images are signed with sigstore's [cosign](https://docs.sigstore.dev/cosign/overview/). You can verify the signature by downloading the `cosign.pub` key from this repo and running the following command:
@@ -213,27 +155,3 @@ We set the default dconf keys in `/etc/dconf/db/local`, removing those keys and 
     sudo dconf update
 
 If you prefer a vanilla GNOME installation check out [silverblue-main](https://github.com/ublue-os/main) or [silverblue-nvidia](https://github.com/ublue-os/nvidia) for a more upstream experience.
-
-Should I trust you?
-
-> This is all hosted, built, and pushed on GitHub. As far as if I'm a trustable fellow, here's my [bio](https://www.ypsidanger.com/about/). If you've made it this far then hopefully you've come to the conclusion on how easy it would be to build all of this on your own trusted machinery. :smile:
-1. [Bluefin](https://universal-blue.discourse.group/t/introduction-to-bluefin/41)
-2. [Discussions and Announcements](https://universal-blue.discourse.group/c/bluefin/6) - strongly recommended!
-3. [Developer Experience Edition](https://universal-blue.discourse.group/t/bluefin-dx-the-bluefin-developer-experience/39)
-4. [Administrator's Guide](https://universal-blue.discourse.group/t/bluefin-administrators-guide/40)
-5. [Framework Images](https://universal-blue.org/images/framework/)
-
-## Repobeats
-
-![Alt](https://repobeats.axiom.co/api/embed/40b85b252bf6ea25eb90539d1adcea013ccae69a.svg "Repobeats analytics image")
-
-## Star History
-
-<a href="https://star-history.com/#ublue-os/bluefin&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ublue-os/bluefin&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ublue-os/bluefin&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ublue-os/bluefin&type=Date" />
-  </picture>
-</a>
-
