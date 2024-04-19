@@ -39,7 +39,8 @@ RUN if grep -q "nvidia" <<< "${IMAGE_FLAVOR}"; then \
     ; fi
 
 # Build, cleanup, commit.
-RUN bash -c ". /tmp/build/build-base.sh"  && \
+RUN rpm-ostree cliwrap install-to-root / && \
+    bash -c ". /tmp/build/build-base.sh"  && \
     rm -rf /tmp/* /var/* && \
     mkdir -p /var/tmp && \
     chmod -R 1777 /var/tmp && \

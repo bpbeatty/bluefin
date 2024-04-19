@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+# shellcheck disable=SC1091
 
 set -oue pipefail
 
@@ -10,5 +11,6 @@ sysctl -p
 . /tmp/build/image-info.sh
 . /tmp/build/fetch-install-dx.sh
 . /tmp/build/workarounds.sh
+. /tmp/build/systemd-dx.sh
 . /tmp/build/branding-dx.sh
 . /tmp/build/cleanup-dx.sh
