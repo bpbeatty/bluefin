@@ -1,8 +1,6 @@
 # bluefin
-**This image is considered Beta**
 
-[![bluefin 38](https://github.com/bpbeatty/bluefin/actions/workflows/build-38-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-38-bluefin.yml) [![bluefin 39](https://github.com/bpbeatty/bluefin/actions/workflows/build-39-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-39-bluefin.yml) [![bluefin 40](https://github.com/bpbeatty/bluefin/actions/workflows/build-40-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-40-bluefin.yml)
-
+[![bluefin 39](https://github.com/bpbeatty/bluefin/actions/workflows/build-39-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-39-bluefin.yml) [![bluefin 40](https://github.com/bpbeatty/bluefin/actions/workflows/build-40-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-40-bluefin.yml) 
 ![image](https://github.com/ublue-os/bluefin/assets/1264109/c0b3fa8a-f513-4bb1-b314-e134d1802e18)
 
 > "Evolution is a process of constant branching and expansion." - Stephen Jay Gould
