@@ -143,30 +143,12 @@
       "dx": []
     }
   },
-  "38": {
-    "include": {
-      "silverblue": [
-      ],
-      "dx": [
-        "distrobuilder",
-        "devpod",
-        "podman-plugins"
-      ]
-    },
-    "exclude": {
-      "silverblue": [
-        "podman-docker"
-      ],
-      "dx": []
-    }
-  },
   "39": {
     "include": {
       "all": [
         "input-leap"
       ],
       "silverblue": [
-        "gnome-shell-extension-tailscale-gnome-qs",
         "nautilus-open-any-terminal"
       ],
       "dx": [
