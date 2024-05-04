@@ -1,18 +1,17 @@
 # bluefin
 
-[![bluefin 39](https://github.com/bpbeatty/bluefin/actions/workflows/build-39-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-39-bluefin.yml) [![bluefin 40](https://github.com/bpbeatty/bluefin/actions/workflows/build-40-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-40-bluefin.yml) 
-![image](https://github.com/ublue-os/bluefin/assets/1264109/c0b3fa8a-f513-4bb1-b314-e134d1802e18)
+[![bluefin 39](https://github.com/bpbeatty/bluefin/actions/workflows/build-39-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-39-bluefin.yml) [![bluefin 40](https://github.com/bpbeatty/bluefin/actions/workflows/build-40-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-40-bluefin.yml)
+![image](https://user-images.githubusercontent.com/1264109/224488462-ac4ed2ad-402d-4116-bd08-15f61acce5cf.png)
+> "Let's see what's out there." - Jean-Luc Picard
 
-> "Evolution is a process of constant branching and expansion." - Stephen Jay Gould
-
-A familiar(ish) Ubuntu desktop for Fedora Silverblue. It strives to cover these two use cases. For end users it provides a system as reliable as a Chromebook with near-zero maintainance, with the power of Ubuntu and Fedora fused together. For gamers we strive to deliver a world-class Flathub gaming experience. Check [Introduction to Bluefin](https://universal-blue.discourse.group/t/introduction-to-bluefin/41) for a feature walkthrough. 
+A familiar(ish) Ubuntu desktop for Fedora Silverblue. It strives to cover these two use cases. For end users it provides a system as reliable as a Chromebook with near-zero maintainance, with the power of Ubuntu and Fedora fused together. For gamers we strive to deliver a world-class Flathub gaming experience.
 
 # Documentation
 
 1. Download and install [the ISO from here](https://github.com/ublue-os/main/releases/latest/):
    - Select "Install ublue-os/bluefin" from the menu
-     - Choose "Install bluefin:38" if you have an AMD or Intel GPU
-     - Choose "Install bluefin-nvidia:38" if you have an Nvidia GPU
+     - Choose "Install bluefin:39" if you have an AMD or Intel GPU
+     - Choose "Install bluefin-nvidia:39" if you have an Nvidia GPU
    - [Follow the rest of the installation instructions](https://ublue.it/installation/)
 
 ### For existing Silverblue/Kinoite users
@@ -20,30 +19,36 @@ A familiar(ish) Ubuntu desktop for Fedora Silverblue. It strives to cover these 
 1. After you reboot you should [pin the working deployment](https://docs.fedoraproject.org/en-US/fedora-silverblue/faq/#_about_using_silverblue) so you can safely rollback.
 1. [AMD/Intel GPU users only] Open a terminal and rebase the OS to this image:
 
+  *Note: latest for current fedora, gts for current fedora - 1*
+
     Bluefin:
 
-        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin:38
+        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin:latest
+        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin:gts
 
     Bluefin Developer Experience:
 
-        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin-dx:38
+        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin-dx:latest
+        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin-dx:gts
 
 
 1. [Nvidia GPU users only] Open a terminal and rebase the OS to this image:
 
     Bluefin:
 
-        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin-nvidia:38
+        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin-nvidia:latest
+        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin-nvidia:gts
 
     Bluefin Developer Experience:
 
-        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin-dx-nvidia:38
+        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin-dx-nvidia:latest
+        sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/bpbeatty/bluefin-dx-nvidia:gts
 
 1. Reboot the system and you're done!
 
 1. To revert back:
 
-        sudo rpm-ostree rebase fedora:fedora/38/x86_64/silverblue
+        sudo rpm-ostree rebase fedora:fedora/39/x86_64/silverblue
 
 Check the [Silverblue documentation](https://docs.fedoraproject.org/en-US/fedora-silverblue/) for instructions on how to use rpm-ostree.
 We build date tags as well, so if you want to rebase to a particular day's release you can use the version number and date to boot off of that specific image:
