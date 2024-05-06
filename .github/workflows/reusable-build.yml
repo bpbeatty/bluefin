@@ -86,6 +86,8 @@ jobs:
         uses: EyeCantCU/cosign-action/verify@v0.2.2
         with:
           containers: ${{ env.BASE_IMAGE_NAME}}-${{ matrix.image_flavor }}:${{ matrix.fedora_version }}
+          registry: ${{ env.IMAGE_REGISTRY }}
+          pubkey: https://raw.githubusercontent.com/bpbeatty/bluefin/main/cosign.pub
 
       - name: Verify Chainguard images
         if: matrix.base_name != 'bluefin' && matrix.base_name != 'aurora'

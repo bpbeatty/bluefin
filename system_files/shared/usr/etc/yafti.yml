@@ -64,6 +64,12 @@ screens:
           - Opera: com.opera.Opera
           - Tor: com.github.micahflee.torbrowser-launcher
           - Vivaldi: com.vivaldi.Vivaldi
+        Radio:
+          description: Amatuer Radio
+          default: false
+          packages:
+          - JS8Call: com.js8call.JS8Call
+          - wsjtx: edu.princeton.physics.WSJTX
         Streaming:
           description: Stream to the Internet
           default: false
