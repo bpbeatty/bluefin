@@ -22,6 +22,7 @@
         "input-remapper",
         "libimobiledevice",
         "libxcrypt-compat",
+        "lm_sensors",
         "make",
         "mesa-libGLU",
         "nerd-fonts",
