@@ -3,8 +3,8 @@ favorite-apps = ['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.keepassxc
 enabled-extensions = ['appindicatorsupport@rgcjonas.gmail.com', 'blur-my-shell@aunetx', 'gsconnect@andyholmes.github.io', 'search-light@icedman.github.com']
 
 [org/gnome/desktop/background]
-picture-uri='file:///usr/share/backgrounds/bluefin/bluefin-spring-dynamic.xml'
-picture-uri-dark='file:///usr/share/backgrounds/bluefin/bluefin-spring-dynamic.xml'
+picture-uri='file:///usr/share/backgrounds/bluefin/bluefin-summer-dynamic.xml'
+picture-uri-dark='file:///usr/share/backgrounds/bluefin/bluefin-summer-dynamic.xml'
 picture-options='zoom'
 primary-color='000000'
 secondary-color='FFFFFF'
@@ -123,9 +123,3 @@ default-profile-uuid='2871e8027773ae74d6c87a5f659bbc74'
 
 [org/gnome/Ptyxis/Profiles/2871e8027773ae74d6c87a5f659bbc74]
 palette='catppuccin-dynamic'
-
-[org/gnome/shell/extensions/auto-power-profile]
-ac='balanced'
-bat='power-saver'
-notify=true
-lapmode=true
