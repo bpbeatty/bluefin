@@ -3,6 +3,7 @@
 
 set -ouex pipefail
 
+. /tmp/build/firmware.sh
 . /tmp/build/copr-repos.sh
 . /tmp/build/install-akmods.sh
 . /tmp/build/packages.sh
@@ -17,4 +18,5 @@ set -ouex pipefail
 . /tmp/build/aurora-changes.sh
 . /tmp/build/branding.sh
 . /tmp/build/initramfs.sh
+. /tmp/build/bootc.sh
 . /tmp/build/cleanup.sh
