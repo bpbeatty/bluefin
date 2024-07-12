@@ -146,7 +146,7 @@ jobs:
           echo "VERSION=$ver" >> $GITHUB_OUTPUT
 
       - name: Verify base image
-        uses: EyeCantCU/cosign-action/verify@11f8c114a5e67c7a663c9dfcaf76d85429d254bc # v0.2.2
+        uses: EyeCantCU/cosign-action/verify@58722a084c82190b57863002d494c91eabbe9e79 # v0.3.0
         with:
           containers: ${{ env.BASE_IMAGE_NAME}}-${{ env.image_flavor }}:${{ steps.labels.outputs.fedora_version }}
           registry: ${{ env.IMAGE_REGISTRY }}
@@ -154,7 +154,7 @@ jobs:
 
       - name: Verify Chainguard images
         if: matrix.base_name != 'bluefin' && matrix.base_name != 'aurora'
-        uses: EyeCantCU/cosign-action/verify@11f8c114a5e67c7a663c9dfcaf76d85429d254bc # v0.2.2
+        uses: EyeCantCU/cosign-action/verify@58722a084c82190b57863002d494c91eabbe9e79 # v0.3.0
         with:
           containers: dive, flux, helm, ko, minio, kubectl
           cert-identity: https://github.com/chainguard-images/images/.github/workflows/release.yaml@refs/heads/main
@@ -308,7 +308,7 @@ jobs:
             --target=${{ env.TARGET_NAME }}
 
       # - name: Sign kernel
-      #   uses: ublue-os/kernel-signer@ba1d52542bbfd0db42a528f52a114e12667169e5 # v0.2.3
+      #   uses: ublue-os/kernel-signer@d7bee36277c13bd4072f452766392a3420d2bbdf # v0.2.4
       #   if: github.event_name != 'pull_request'
       #   with:
       #     image: ${{ steps.build_image.outputs.image }}
@@ -375,7 +375,7 @@ jobs:
 
       - name: Upload artifact
         if: github.event_name != 'pull_request'
-        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
         with:
           name: image-${{ env.IMAGE_NAME }}-${{ env.image_flavor }}-${{ matrix.fedora_version }}
           retention-days: 1
@@ -394,7 +394,7 @@ jobs:
       - name: Download artifacts
         if: github.event_name != 'pull_request'
         id: download-artifacts
-        uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
           pattern: image-*
           merge-multiple: true

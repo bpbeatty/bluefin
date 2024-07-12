@@ -2,7 +2,7 @@
 
 set -ouex pipefail
 
-systemctl enable remote-fs.target && \
+systemctl enable remote-fs.target
 systemctl enable rpm-ostree-countme.service
 systemctl enable dconf-update.service
 systemctl --global enable ublue-flatpak-manager.service
