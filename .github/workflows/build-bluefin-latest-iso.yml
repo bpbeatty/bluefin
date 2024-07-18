@@ -1,8 +1,8 @@
 name: Bluefin Latest ISO
 on:
   workflow_dispatch:
-  schedule:
-    # - cron: '0 4 * * sun'  # 04:00 Sunday
+  # schedule:
+  #   - cron: '0 4 * * sun'  # 04:00 Sunday
   
 
 jobs:
