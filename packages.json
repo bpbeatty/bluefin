@@ -68,7 +68,8 @@
         "nautilus-gsconnect",
         "nautilus-open-any-terminal",
         "openssh-askpass",
-        "yaru-theme"
+        "yaru-theme",
+        "zenity"
       ],
       "kinoite": [
         "skanpage",
@@ -76,6 +77,8 @@
         "libadwaita-qt6",
         "kde-runtime-docs",
         "kdenetwork-filesharing",
+        "kdeplasma-addons",
+        "kdialog",
         "plasma-wallpapers-dynamic"
       ],
       "dx": [
