@@ -19,3 +19,6 @@ jobs:
     with:
       brand_name: aurora
       fedora_version: stable
+      rechunk: true
+      weekly_tag_day: Tuesday
+
