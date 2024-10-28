@@ -28,6 +28,7 @@
         "ifuse",
         "input-leap",
         "input-remapper",
+        "jetbrains-mono-fonts-all",
         "libimobiledevice",
         "libxcrypt-compat",
         "libsss_autofs",
@@ -100,10 +101,10 @@
         "bpftop",
         "bpftrace",
         "cascadia-code-fonts",
+        "cockpit-bridge",
         "cockpit-machines",
         "cockpit-networkmanager",
         "cockpit-ostree",
-        "cockpit-pcp",
         "cockpit-podman",
         "cockpit-selinux",
         "cockpit-storaged",
@@ -126,13 +127,10 @@
         "incus",
         "incus-agent",
         "iotop",
-        "jetbrains-mono-fonts-all",
         "kcli",
         "libvirt",
         "libvirt-nss",
         "lxc",
-        "lxd-agent",
-        "lxd",
         "mozilla-fira-mono-fonts",
         "nicstat",
         "numactl",
@@ -195,6 +193,8 @@
         "fmt"
       ],
       "dx": [
+        "lxd-agent",
+        "lxd",
         "distrobuilder",
         "podman-plugins"
       ]
@@ -202,6 +202,7 @@
     "exclude": {
       "all": [],
       "silverblue": [],
+      "kinoite": [],
       "dx": []
     }
   },
@@ -211,13 +212,34 @@
         "ptyxis"
       ],
       "silverblue": [],
-      "dx": []
+      "dx": [
+        "lxd-agent",
+        "lxd"
+      ]
     },
     "exclude": {
-      "all":  [],
+      "all": [],
       "silverblue": [],
+      "kinoite": [],
+      "dx": []
+    }
+  },
+  "41": {
+    "include": {
+      "all": [],
+      "kinoite": [
+        "ptyxis"
+      ],
+      "silverblue": []
+    },
+    "exclude": {
+      "all": [],
+      "silverblue": [],
+      "kinoite": [
+        "plasma-welcome",
+        "plasma-welcome-fedora"
+      ],
       "dx": []
     }
   }
-
 }

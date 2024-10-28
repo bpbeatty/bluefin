@@ -20,6 +20,16 @@ on:
         required: false
         type: string
         default: Tuesday
+      build_stable_daily:
+        description: "Build with 'stable-daily' tag"
+        required: false
+        type: boolean
+        default: true
+      build_stable_weekly:
+        description: "Build with 'stable' tag"
+        required: false
+        type: boolean
+        default: true
     outputs:
       images:
         description: "An array of images built and pushed to the registry"
@@ -78,7 +88,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - name: Matrix Variables
         run: |
@@ -175,6 +185,7 @@ jobs:
 
       - name: Verify ZFS
         uses: EyeCantCU/cosign-action/verify@58722a084c82190b57863002d494c91eabbe9e79 # v0.3.0
+        if: inputs.fedora_version != 'beta'
         with:
           containers: akmods-zfs:coreos-stable-${{ env.fedora_version }}
 
@@ -213,21 +224,25 @@ jobs:
             IS_LATEST_VERSION=false
             IS_STABLE_VERSION=true
             IS_GTS_VERSION=false
+            IS_BETA_VERSION=false
             IS_COREOS=true
           elif [[ "${{ matrix.fedora_version }}" == "gts" ]]; then
             IS_LATEST_VERSION=false
             IS_STABLE_VERSION=true
             IS_GTS_VERSION=true
+            IS_BETA_VERSION=false
             IS_COREOS=false
           elif [[ "${{ matrix.fedora_version }}" == "latest" ]]; then
             IS_LATEST_VERSION=true
             IS_STABLE_VERSION=true
             IS_GTS_VERSION=false
+            IS_BETA_VERSION=false
             IS_COREOS=false
           elif [[ "${{ matrix.fedora_version }}" == "beta" ]]; then
             IS_LATEST_VERSION=false
             IS_STABLE_VERSION=false
             IS_GTS_VERSION=false
+            IS_BETA_VERSION=true
             IS_COREOS=false
           fi
 
@@ -244,15 +259,18 @@ jobs:
               COMMIT_TAGS+=("${SHA_SHORT}")
           fi
 
+          TODAY="$(date +%A)"
           if [[ ${{ matrix.fedora_version }} == "stable" ]]; then
-            BUILD_TAGS=("${FEDORA_VERSION}-daily" "${FEDORA_VERSION}-daily-${TIMESTAMP}")
-            if [[ ${{ github.event_name }} == "schedule" ]]; then
-              TODAY="$(date +%A)"
-              if [[ "${TODAY}" == "${{ inputs.weekly_tag_day }}" ]]; then
-                BUILD_TAGS+=("${FEDORA_VERSION}" "${FEDORA_VERSION}-${TIMESTAMP}")
-              fi
+            if [[ ${{ github.event_name }} == "schedule" ]] && \
+               [[ "${{ inputs.weekly_tag_day }}" != "${TODAY}" ]]; then
+              BUILD_TAGS+=("stable-daily" "stable-daily-${TIMESTAMP}")
+            elif [[ ${{ inputs.build_stable_daily }} == "false" ]]; then
+              BUILD_TAGS+=("stable" "stable-${TIMESTAMP}")
+            elif [[ ${{ inputs.build_stable_weekly }} == "false" ]]; then
+              BUILD_TAGS+=("stable-daily" "stable-daily-${TIMESTAMP}")
             else
-              BUILD_TAGS+=("${FEDORA_VERSION}" "${FEDORA_VERSION}-${TIMESTAMP}")
+              BUILD_TAGS+=("stable" "stable-${TIMESTAMP}")
+              BUILD_TAGS+=("stable-daily" "stable-daily-${TIMESTAMP}")
             fi
           else
             BUILD_TAGS=("${{ env.fedora_version }}" "${{ env.fedora_version }}-${TIMESTAMP}")
@@ -271,6 +289,9 @@ jobs:
             elif [[ "$IS_GTS_VERSION" == "true" ]]; then
                 BUILD_TAGS+=("gts-testing")
                 echo "DEFAULT_TAG=gts-testing" >> $GITHUB_ENV
+            elif [[ "$IS_BETA_VERSION" == "true" ]]; then
+                BUILD_TAGS+=("beta-testing")
+                echo "DEFAULT_TAG=beta-testing" >> $GITHUB_ENV
             elif [[ "$IS_COREOS" == "true" ]]; then
                 echo "DEFAULT_TAG=stable-testing" >> $GITHUB_ENV
             fi
@@ -282,8 +303,15 @@ jobs:
             elif [[ "$IS_GTS_VERSION" == "true" ]]; then
                   BUILD_TAGS+=("gts")
                   echo "DEFAULT_TAG=gts" >> $GITHUB_ENV
+            elif [[ "$IS_BETA_VERSION" == "true" ]]; then
+                  BUILD_TAGS+=("beta")
+                  echo "DEFAULT_TAG=beta" >> $GITHUB_ENV
             elif [[ "$IS_COREOS" == "true" ]]; then
-                  echo "DEFAULT_TAG=stable-daily" >> $GITHUB_ENV
+                  if [[ ${{ inputs.build_stable_daily }} == "true" ]]; then
+                    echo "DEFAULT_TAG=stable-daily" >> $GITHUB_ENV
+                  else
+                    echo "DEFAULT_TAG=stable" >> $GITHUB_ENV
+                  fi
             fi
           fi
 
@@ -337,11 +365,10 @@ jobs:
           command: |
             # pull the base image used for FROM in containerfile so
             # we can retry on that unfortunately common failure case
-            podman pull ${{ env.IMAGE_REGISTRY }}/${{ env.BASE_IMAGE_NAME }}-${{ env.image_flavor }}:${{ env.fedora_version }}
-            podman pull ${{ env.IMAGE_REGISTRY_AKMODS }}/akmods:${{ env.AKMODS_FLAVOR }}-${{ env.fedora_version }}
-            podman pull ${{ env.IMAGE_REGISTRY_AKMODS }}/akmods-nvidia:${{ env.AKMODS_FLAVOR }}-${{ env.fedora_version }}
-            podman pull ${{ env.IMAGE_REGISTRY_AKMODS }}/akmods-zfs:coreos-stable-${{ env.fedora_version }}
-            podman pull ${{ env.IMAGE_REGISTRY_AKMODS }}/${{ env.AKMODS_FLAVOR }}-kernel:${{ env.kernel_release }}
+            sudo podman pull ${{ env.IMAGE_REGISTRY }}/${{ env.BASE_IMAGE_NAME }}-${{ env.image_flavor }}:${{ env.fedora_version }}
+            sudo podman pull ${{ env.IMAGE_REGISTRY_AKMODS }}/akmods:${{ env.AKMODS_FLAVOR }}-${{ env.fedora_version }}
+            sudo podman pull ${{ env.IMAGE_REGISTRY_AKMODS }}/akmods-nvidia:${{ env.AKMODS_FLAVOR }}-${{ env.fedora_version }}
+            sudo podman pull ${{ env.IMAGE_REGISTRY_AKMODS }}/${{ env.AKMODS_FLAVOR }}-kernel:${{ env.kernel_release }}
 
       - name: Build Image
         id: build_image
