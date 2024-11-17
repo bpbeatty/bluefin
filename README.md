@@ -1,6 +1,6 @@
 # bluefin
 
-[![Bluefin GTS](https://github.com/bpbeatty/bluefin/actions/workflows/build-gts-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-gts-bluefin.yml) [![Bluefin Stable](https://github.com/bpbeatty/bluefin/actions/workflows/build-coreos-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-coreos-bluefin.yml) [![Bluefin Latest](https://github.com/bpbeatty/bluefin/actions/workflows/build-latest-bluefin.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-latest-bluefin.yml) 
+[![Bluefin GTS](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-gts.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-gts.yml) [![Bluefin Stable](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-stable.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-stable.yml) [![Bluefin Latest](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-latest.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-latest.yml)
 
 ![image](https://user-images.githubusercontent.com/1264109/224488462-ac4ed2ad-402d-4116-bd08-15f61acce5cf.png)
 > "Let's see what's out there." - Jean-Luc Picard
