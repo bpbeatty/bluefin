@@ -5,8 +5,8 @@ favorite-apps = ['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.keepassxc
 enabled-extensions = ['appindicatorsupport@rgcjonas.gmail.com', 'blur-my-shell@aunetx', 'gsconnect@andyholmes.github.io', 'search-light@icedman.github.com']
 
 [org.gnome.desktop.background]
-picture-uri='file:///usr/share/backgrounds/bluefin/10-bluefin.xml'
-picture-uri-dark='file:///usr/share/backgrounds/bluefin/10-bluefin.xml'
+picture-uri='file:///usr/share/backgrounds/bluefin/12-bluefin.xml'
+picture-uri-dark='file:///usr/share/backgrounds/bluefin/12-bluefin.xml'
 picture-options='zoom'
 primary-color='000000'
 secondary-color='FFFFFF'
@@ -53,7 +53,6 @@ sort-directories-first=true
 sort-directories-first=true
 
 [org.gnome.mutter]
-experimental-features=['scale-monitor-framebuffer', 'xwayland-native-scaling']
 check-alive-timeout=uint32 20000
 
 [org.gnome.software]

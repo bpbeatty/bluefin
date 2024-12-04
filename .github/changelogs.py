@@ -61,6 +61,7 @@ From previous `{target}` version `{prev}` there have been the following changes.
 | **KDE** | {pkgrel:plasma-desktop} |
 | **Mesa** | {pkgrel:mesa-filesystem} |
 | **Podman** | {pkgrel:podman} |
+| **Nvidia** | {pkgrel:nvidia-driver} |
 
 ### Major DX packages
 | Name | Version |
@@ -99,7 +100,8 @@ BLACKLIST_VERSIONS = [
     "podman",
     "docker-ce",
     "incus",
-    "devpod"
+    "devpod",
+    "nvidia-driver"
 ]
 
 
@@ -157,13 +159,18 @@ def get_manifests(target: str):
 def get_tags(target: str, manifests: dict[str, Any]):
     tags = set()
 
+    first = next(iter(manifests.values()))
+    for tag in first["RepoTags"]:
+        # Tags ending with .0 should not exist
+        if tag.endswith(".0"):
+            continue
+        if re.match(START_PATTERN(target), tag):
+            tags.add(tag)
+
     for manifest in manifests.values():
-        for tag in manifest["RepoTags"]:
-            # Tags ending with .0 should not exist
-            if tag.endswith(".0"):
-                continue
-            if re.match(START_PATTERN(target), tag):
-                tags.add(tag)
+        for tag in list(tags):
+            if tag not in manifest["RepoTags"]:
+                tags.remove(tag)
 
     tags = list(sorted(tags))
     if not len(tags) >= 2:
@@ -388,6 +395,11 @@ def generate_changelog(
     title = CHANGELOG_TITLE.format_map(defaultdict(str, tag=curr, pretty=pretty))
 
     changelog = CHANGELOG_FORMAT
+
+    if target == "gts":
+        changelog = changelog.splitlines()
+        del changelog[9]
+        changelog = '\n'.join(changelog)
 
     changelog = (
         changelog.replace("{handwritten}", handwritten if handwritten else HANDWRITTEN_PLACEHOLDER)

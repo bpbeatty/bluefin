@@ -134,8 +134,10 @@
         "mozilla-fira-mono-fonts",
         "nicstat",
         "numactl",
+        "osbuild-selinux",
         "p7zip-plugins",
         "p7zip",
+        "podman-bootc",
         "podman-compose",
         "podman-machine",
         "podman-tui",
@@ -175,35 +177,15 @@
       ],
       "silverblue": [
         "gnome-extensions-app",
+        "gnome-shell-extension-background-logo",
         "gnome-software-rpm-ostree",
-        "gnome-terminal-nautilus",
-        "gnome-tour"
+        "gnome-terminal-nautilus"
       ],
       "kinoite": [
         "krfb",
         "krfb-libs",
         "plasma-welcome"
       ],
-      "dx": []
-    }
-  },
-  "39": {
-    "include": {
-      "all": [],
-      "silverblue": [
-        "fmt"
-      ],
-      "dx": [
-        "lxd-agent",
-        "lxd",
-        "distrobuilder",
-        "podman-plugins"
-      ]
-    },
-    "exclude": {
-      "all": [],
-      "silverblue": [],
-      "kinoite": [],
       "dx": []
     }
   },
@@ -227,7 +209,9 @@
   },
   "41": {
     "include": {
-      "all": [],
+      "all": [
+        "google-noto-fonts-all"
+      ],
       "kinoite": [
         "ptyxis"
       ],
