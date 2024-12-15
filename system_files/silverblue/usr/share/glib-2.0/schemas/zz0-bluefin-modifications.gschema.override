@@ -4,12 +4,12 @@
 favorite-apps = ['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.keepassxc.KeePassXC.desktop', 'code.desktop']
 enabled-extensions = ['appindicatorsupport@rgcjonas.gmail.com', 'blur-my-shell@aunetx', 'gsconnect@andyholmes.github.io', 'search-light@icedman.github.com']
 
-[org.gnome.desktop.background]
-picture-uri='file:///usr/share/backgrounds/bluefin/12-bluefin.xml'
-picture-uri-dark='file:///usr/share/backgrounds/bluefin/12-bluefin.xml'
-picture-options='zoom'
-primary-color='000000'
-secondary-color='FFFFFF'
+# [org.gnome.desktop.background]
+# picture-uri='file:///usr/share/backgrounds/bluefin/12-bluefin.xml'
+# picture-uri-dark='file:///usr/share/backgrounds/bluefin/12-bluefin.xml'
+# picture-options='zoom'
+# primary-color='000000'
+# secondary-color='FFFFFF'
 
 [org.gnome.desktop.interface]
 enable-hot-corners=true
@@ -39,6 +39,7 @@ switch-windows=['<Alt>Tab']
 switch-windows-backward=['<Shift><Alt>Tab']
 switch-input-source=['<Shift><Super>space']
 switch-input-source-backward=['']
+unmaximize=['<Super>Down']
 
 [org.gnome.desktop.peripherals.keyboard]
 numlock-state=true
