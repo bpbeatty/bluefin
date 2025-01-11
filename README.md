@@ -9,12 +9,6 @@ A familiar(ish) Ubuntu desktop for Fedora Silverblue. It strives to cover these 
 
 # Documentation
 
-1. Download and install [the ISO from here](https://github.com/ublue-os/main/releases/latest/):
-   - Select "Install ublue-os/bluefin" from the menu
-     - Choose "Install bluefin:39" if you have an AMD or Intel GPU
-     - Choose "Install bluefin-nvidia:39" if you have an Nvidia GPU
-   - [Follow the rest of the installation instructions](https://ublue.it/installation/)
-
 ### For existing Silverblue/Kinoite users
 
 1. After you reboot you should [pin the working deployment](https://docs.fedoraproject.org/en-US/fedora-silverblue/faq/#_about_using_silverblue) so you can safely rollback.
@@ -74,8 +68,8 @@ System updates are image-based and automatic. Applications are logically seperat
     - Blur my Shell - for that bling
 - GNOME Software with [Flathub](https://flathub.org)
     - Use a familiar software center UI to install graphical software
-- Built on top of the the [Universal Blue main image](https://github.com/ublue-os/main)
-  - Extra udev rules for game controllers and [other devices](https://github.com/ublue-os/config) included out of the box
+- Built on top of the the [Universal Blue main image](https://github.com/bpbeatty/main)
+  - Extra udev rules for game controllers and [other devices](https://github.com/bpbeatty/config) included out of the box
   - All multimedia codecs included
   - System designed for automatic staging of updates
     - If you've never used an image-based Linux before just use your computer normally
@@ -85,7 +79,7 @@ System updates are image-based and automatic. Applications are logically seperat
 
 ## bluefin-dx - The Bluefin Developer Experience
 
-Dedicated developer image with bundled tools. It endevaours to be the world's most powerful cloud native developer environment. :) It includes everything in the base image plus: 
+Dedicated developer image with bundled tools. It endevaours to be the world's most powerful cloud native developer environment. :) It includes everything in the base image plus:
 
 - [VSCode](https://code.visualstudio.com/) and related tools
 - [virt-manager](https://virt-manager.org/) and associated tooling
@@ -112,13 +106,8 @@ Dedicated developer image with bundled tools. It endevaours to be the world's mo
     - [kubectl](https://kubernetes.io/docs/reference/kubectl/) - Administer Kubernetes Clusters
     - helm, ko, flux, minio-client -- if it's an incubated project we intend to add it where appropriate
 - [DevPod](https://devpod.sh/docs/what-is-devpod) - reproducible developer environments, powered by [devcontainers](https://containers.dev/) - Nix-powered Development Experience powered by Devbox
-    - [Introducing Fleek](https://getfleek.dev)
-      - `just nix-devbox` to get started
-      - `just nix-devbox-global` to install a global profile
-      - Check out [Devbox](https://www.jetpack.io/devbox) for more information
 - Quality of Life Improvements
     - systemd shutdown timers adjusted to 15 seconds
-    - [Just](https://github.com/casey/just) task runner for post-install automation tasks. Check out [our documentation](https://universal-blue.org/guide/just/) for more information on using and customizing just.
     - `fish` and `zsh` available as optional shells, use `just fish` or `just zsh` and follow the prompts to configure them
 
 ## Verification
@@ -157,5 +146,3 @@ We set the default dconf keys in `/etc/dconf/db/local`, removing those keys and 
 
     sudo rm -f /etc/dconf/db/local.d/01-ublue
     sudo dconf update
-
-If you prefer a vanilla GNOME installation check out [silverblue-main](https://github.com/ublue-os/main) or [silverblue-nvidia](https://github.com/ublue-os/nvidia) for a more upstream experience.
