@@ -57,6 +57,7 @@
         "sssd-nfs-idmap",
         "stress-ng",
         "tmux",
+        "topgrade",
         "usbmuxd",
         "vim",
         "vim-default-editor",
@@ -134,6 +135,7 @@
         "podman-tui",
         "podmansh",
         "powerline-fonts",
+        "python3-ramalama",
         "qemu-char-spice",
         "qemu-device-display-virtio-gpu",
         "qemu-device-display-virtio-vga",
@@ -162,8 +164,7 @@
       "all": [
         "nano-default-editor",
         "ublue-os-signing",
-        "podman-docker",
-        "ublue-os-update-services"
+        "podman-docker"
       ],
       "silverblue": [
         "gnome-extensions-app",
