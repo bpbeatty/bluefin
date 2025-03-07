@@ -1,11 +1,11 @@
 # bluefin
 
-[![Bluefin GTS](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-gts.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-gts.yml) [![Bluefin Stable](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-stable.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-stable.yml) [![Bluefin Latest](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-latest.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-latest.yml)
+[![GTS Images](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-gts.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-gts.yml) [![Stable Images](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-stable.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-stable.yml) [![Latest Images](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-latest-main.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-latest-main.yml) [![Latest Images HWE](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-latest-hwe.yml/badge.svg)](https://github.com/bpbeatty/bluefin/actions/workflows/build-image-latest-hwe.yml)
 
 ![image](https://user-images.githubusercontent.com/1264109/224488462-ac4ed2ad-402d-4116-bd08-15f61acce5cf.png)
 > "Let's see what's out there." - Jean-Luc Picard
 
-A familiar(ish) Ubuntu desktop for Fedora Silverblue. It strives to cover these two use cases. For end users it provides a system as reliable as a Chromebook with near-zero maintainance, with the power of Ubuntu and Fedora fused together. For gamers we strive to deliver a world-class Flathub gaming experience.
+This is my personal build of Bluefin. Use at your own risk. For the original go [here](https://projectbluefin.io/)
 
 # Documentation
 
@@ -125,9 +125,9 @@ These images are signed with sigstore's [cosign](https://docs.sigstore.dev/cosig
 
 1. Make modifications if desired
 
-1. Build the image (Note that this will download and the entire image)
+1. Build the image (Note that this will download and the entire image), using included Justfile
 
-       podman build . -t bluefin
+       just build
 
 1. [Podman push](https://docs.podman.io/en/latest/markdown/podman-push.1.html) to a registry of your choice.
 1. Rebase to your image to wherever you pushed it:
