@@ -23,7 +23,7 @@ jobs:
       matrix:
         brand_name: ["bluefin"]
     with:
-      image_flavors: '["hwe", "hwe-nvidia", "hwe-nvidia-open"]'
+      image_flavors: '["hwe", "hwe-nvidia"]'
       brand_name: ${{ matrix.brand_name }}
       stream_name: latest
 

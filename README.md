@@ -5,7 +5,7 @@
 ![image](https://user-images.githubusercontent.com/1264109/224488462-ac4ed2ad-402d-4116-bd08-15f61acce5cf.png)
 > "Let's see what's out there." - Jean-Luc Picard
 
-This is my personal build of Bluefin. Use at your own risk. For the original go [here](https://projectbluefin.io/)
+This is my personal build of Bluefin. Use at your own risk. For the original go [here](https://projectbluefin.io/).
 
 # Documentation
 
