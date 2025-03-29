@@ -22,9 +22,11 @@ systemctl enable check-sb-key.service
 systemctl enable remote-fs.target
 
 # Hide Desktop Files. Hidden removes mime associations
-sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nHidden=true@g' /usr/share/applications/fish.desktop
-sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nHidden=true@g' /usr/share/applications/htop.desktop
-sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nHidden=true@g' /usr/share/applications/nvtop.desktop
+for file in fish htop nvtop; do
+    if [[ -f "/usr/share/applications/$file.desktop" ]]; then
+        sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nHidden=true@g' /usr/share/applications/"$file".desktop
+    fi
+done
 
 #Disable autostart behaviour
 rm -f /etc/xdg/autostart/solaar.desktop
