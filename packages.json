@@ -69,6 +69,8 @@
         "sssd-krb5",
         "sssd-nfs-idmap",
         "tmux",
+        "ublue-polkit-rules",
+        "ublue-setup-services",
         "uld",
         "usbmuxd",
         "vim",
@@ -120,8 +122,8 @@
         "nicstat",
         "numactl",
         "osbuild-selinux",
-        "p7zip-plugins",
         "p7zip",
+        "p7zip-plugins",
         "podman-bootc",
         "podman-compose",
         "podman-machine",
@@ -129,6 +131,7 @@
         "podmansh",
         "powerline-fonts",
         "python3-ramalama",
+        "qemu",
         "qemu-char-spice",
         "qemu-device-display-virtio-gpu",
         "qemu-device-display-virtio-vga",
@@ -137,7 +140,6 @@
         "qemu-system-x86-core",
         "qemu-user-binfmt",
         "qemu-user-static",
-        "qemu",
         "rocm-hip",
         "rocm-opencl",
         "rocm-smi",
@@ -148,13 +150,16 @@
         "udica",
         "umoci",
         "virt-manager",
-        "virt-viewer",
         "virt-v2v",
+        "virt-viewer",
         "ydotool"
       ]
     },
     "exclude": {
       "all": [
+        "fedora-bookmarks",
+        "fedora-chromium-config",
+        "fedora-chromium-config-gnome",
         "nano-default-editor",
         "ublue-os-signing",
         "gnome-extensions-app",
@@ -163,27 +168,6 @@
         "gnome-terminal-nautilus",
         "podman-docker"
       ],
-      "dx": []
-    }
-  },
-  "40": {
-    "include": {
-      "all": [
-        "epson-inkjet-printer-escpr",
-        "epson-inkjet-printer-escpr2",
-        "ptyxis"
-      ],
-      "dx": [
-        "docker-buildx-plugin",
-        "docker-ce",
-        "docker-ce-cli",
-        "docker-compose-plugin",
-        "lxd-agent",
-        "lxd"
-      ]
-    },
-    "exclude": {
-      "all": [],
       "dx": []
     }
   },

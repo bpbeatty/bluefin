@@ -13,7 +13,7 @@ BUG_SUPPORT_URL="https://github.com/ublue-os/bluefin/issues/"
 CODE_NAME="Archaeopteryx"
 VERSION="${VERSION:-00.00000000}"
 
-IMAGE_INFO="/usr/share/bpbeatty/image-info.json"
+IMAGE_INFO="/usr/share/ublue-os/image-info.json"
 IMAGE_REF="ostree-image-signed:docker://ghcr.io/$IMAGE_VENDOR/$IMAGE_NAME"
 
 # Image Flavor
