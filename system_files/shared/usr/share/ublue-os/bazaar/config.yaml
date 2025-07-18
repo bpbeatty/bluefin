@@ -55,7 +55,7 @@ sections:
       - bazzite-section
     appids:
       - re.sonny.Eloquent
-      - io.github.fabrialberio.pinapp
+      - page.codeberg.libre_menu_editor.LibreMenuEditor
       - app.fotema.Fotema
       - be.alexandervanhee.gradia
       - app.drey.Damask
@@ -95,9 +95,12 @@ sections:
       - bazzite-section
     appids:
       - com.spotify.Client
+      - app.ytmdesktop.ytmdesktop
       - de.haeckerfelix.Shortwave
       - io.bassi.Amberol
       - org.videolan.VLC
+      - com.github.wwmm.easyeffects
+      - me.timschneeberger.jdsp4linux
       - com.github.iwalton3.jellyfin-media-player
       - tv.plex.PlexDesktop
       - com.plexamp.Plexamp
@@ -181,6 +184,7 @@ sections:
       - com.jeffser.Pigment
       - com.github.finefindus.eyedropper
       - io.github.plrigaux.sysd-manager
+      - org.mozilla.vpn
   - title: "Developers"
     subtitle: "Unleash the power of Cloud Native"
     rows: 4
@@ -207,6 +211,7 @@ sections:
       - io.github.ronniedroid.concessio
       - io.github.nokse22.asciidraw
       - dev.geopjr.Collision
+      - io.github.tobagin.digger
   - title: "Sustainability & Education"
     subtitle: "Invest in the Future"
     rows: 2
@@ -225,6 +230,7 @@ sections:
       - im.bernard.Memorado
       - io.github.josephmawa.Egghead
       - io.github.r_sergii.multiElement
+      - org.turbowarp.TurboWarp
   - title: "AI and Machine Learning"
     subtitle: "Explore the best of open source AI"
     rows: 1
