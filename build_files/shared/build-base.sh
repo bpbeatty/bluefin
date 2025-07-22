@@ -21,6 +21,11 @@ cp -r /ctx/just /tmp/just
 cp /ctx/packages.json /tmp/packages.json
 rsync -rvK /ctx/system_files/"${BASE_IMAGE_NAME}"/ /
 rsync -rvK /ctx/system_files/shared/ /
+
+mkdir -p /tmp/scripts/helpers
+install -Dm0755 /ctx/build_files/shared/utils/ghcurl /tmp/scripts/helpers/ghcurl
+export PATH="/tmp/scripts/helpers:$PATH"
+
 echo "::endgroup::"
 
 # Generate image-info.json
