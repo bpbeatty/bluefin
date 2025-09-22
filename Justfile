@@ -30,6 +30,7 @@ tags := '(
 
     # Temporary for LTS to anaconda build-iso
     [lts]=lts
+    [lts-hwe]=lts-hwe
 )'
 export SUDO_DISPLAY := if `if [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then echo true; fi` == "true" { "true" } else { "false" }
 export SUDOIF := if `id -u` == "0" { "" } else if SUDO_DISPLAY == "true" { "sudo --askpass" } else { "sudo" }
@@ -244,11 +245,11 @@ build $image="bluefin" $tag="latest" $flavor="main" rechunk="0" ghcr="0" pipelin
 
     # Rechunk
     if [[ "{{ rechunk }}" == "1" && "{{ ghcr }}" == "1" && "{{ pipeline }}" == "1" ]]; then
-        {{ just }} rechunk "${image}" "${tag}" "${flavor}" 1 1
+        ${SUDOIF} {{ just }} rechunk "${image}" "${tag}" "${flavor}" 1 1
     elif [[ "{{ rechunk }}" == "1" && "{{ ghcr }}" == "1" ]]; then
-        {{ just }} rechunk "${image}" "${tag}" "${flavor}" 1
+        ${SUDOIF} {{ just }} rechunk "${image}" "${tag}" "${flavor}" 1
     elif [[ "{{ rechunk }}" == "1" ]]; then
-        {{ just }} rechunk "${image}" "${tag}" "${flavor}"
+        ${SUDOIF} {{ just }} rechunk "${image}" "${tag}" "${flavor}"
     fi
 
 # Build Image and Rechunk
@@ -519,20 +520,20 @@ build-iso $image="bluefin" $tag="latest" $flavor="main" ghcr="0" pipeline="0":
         rm -rf "${COPYTMP}"
     fi
 
-    FLATPAK_DIR_SHORTNAME="bluefin_flatpaks"
+    FLATPAK_DIR_SHORTNAME="flatpaks"
 
     # Generate Flatpak List
     TEMP_FLATPAK_INSTALL_DIR="$(mktemp -d -p /tmp flatpak-XXXXX)"
     flatpak_refs=()
     while IFS= read -r line; do
         flatpak_refs+=("$line")
-    done < "${FLATPAK_DIR_SHORTNAME}/flatpaks"
+    done < "${FLATPAK_DIR_SHORTNAME}/system-flatpaks.list"
 
     # Add DX Flatpaks if needed
     if [[ "${image_name}" =~ dx ]]; then
         while IFS= read -r line; do
             flatpak_refs+=("$line")
-        done < "dx_flatpaks/flatpaks"
+        done < "flatpaks/system-flatpaks-dx.list"
     fi
 
     echo "Flatpak refs: ${flatpak_refs[@]}"

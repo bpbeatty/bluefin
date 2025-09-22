@@ -51,7 +51,7 @@ From previous `{target}` version `{prev}` there have been the following changes.
 | Name | Version |
 | --- | --- |
 | **Kernel** | {pkgrel:kernel} |
-| **Gnome** | {pkgrel:gnome-control-center-filesystem} |
+| **Gnome** | {pkgrel:gnome-shell} |
 | **Mesa** | {pkgrel:mesa-filesystem} |
 | **Podman** | {pkgrel:podman} |
 | **Nvidia** | {pkgrel:nvidia-driver} |
@@ -86,7 +86,7 @@ This is an automatically generated changelog for release `{curr}`."""
 
 BLACKLIST_VERSIONS = [
     "kernel",
-    "gnome-control-center-filesystem",
+    "gnome-shell",
     "mesa-filesystem",
     "podman",
     "docker-ce",
@@ -243,7 +243,9 @@ def get_versions(manifests: dict[str, Any]):
     pkgs = get_packages(manifests)
     for img_pkgs in pkgs.values():
         for pkg, v in img_pkgs.items():
-            versions[pkg] = re.sub(FEDORA_PATTERN, "", v)
+            v = re.sub(FEDORA_PATTERN, "", v)
+            v = re.sub(r"\.switcheroo", "", v)
+            versions[pkg] = v
     return versions
 
 
@@ -380,11 +382,6 @@ def generate_changelog(
     title = CHANGELOG_TITLE.format_map(defaultdict(str, tag=curr, pretty=pretty))
 
     changelog = CHANGELOG_FORMAT
-
-    if target == "gts":
-        changelog = changelog.splitlines()
-        del changelog[9]
-        changelog = '\n'.join(changelog)
 
     changelog = (
         changelog.replace("{handwritten}", handwritten if handwritten else HANDWRITTEN_PLACEHOLDER)

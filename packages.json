@@ -9,6 +9,7 @@
         "bootc",
         "borgbackup",
         "cryfs",
+        "davfs2",
         "ddcutil",
         "clevis",
         "clevis-dracut",
@@ -33,6 +34,7 @@
         "gum",
         "hplip",
         "ibus-mozc",
+        "igt-gpu-tools",
         "ifuse",
         "input-remapper",
         "iwd",
@@ -77,6 +79,7 @@
         "usbmuxd",
         "vim",
         "vim-default-editor",
+        "waypipe",
         "wireguard-tools",
         "wl-clipboard",
         "xprop",
@@ -106,9 +109,11 @@
         "docker-ce",
         "docker-ce-cli",
         "docker-compose-plugin",
+        "docker-model-plugin",
         "edk2-ovmf",
         "flatpak-builder",
         "genisoimage",
+        "git-svn",
         "google-droid-sans-mono-fonts",
         "google-go-mono-fonts",
         "gqrx",
@@ -201,7 +206,7 @@
     },
     "exclude": {
       "all": [
-          "gnome-software"    
+          "gnome-software"
       ],
       "dx": []
     }
